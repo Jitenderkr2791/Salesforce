@@ -1,0 +1,21 @@
+<testsuites id="" name="" tests="1" failures="0" skipped="0" errors="0" time="84.109416">
+<testsuite name="TC_Login.spec.js" timestamp="2026-05-13T13:19:42.023Z" hostname="chrome" tests="1" failures="0" skipped="0" time="72.5" errors="0">
+<testcase name="Login to Salesforce › Step 1 - login" classname="TC_Login.spec.js" time="72.5">
+<system-out>
+<![CDATA[ Starting Salesforce Login (Hybrid Mode)...
+ Waiting for Authenticator approval OR OTP screen...
+ OTP screen detected directly
+ Starting OTP Flow...
+ OTP Attempt #1
+ OTP Entered: 656576
+ Invalid OTP: Error: Invalid or expired verification code. Try again.
+ OTP cleared. Please re-enter OTP.
+ OTP Attempt #2
+ OTP Entered: 832480
+ Login successful: https://resourceful-impala-ehughf-dev-ed.trailblaze.lightning.force.com/lightning/page/home
+ Login successfully.
+]]>
+</system-out>
+</testcase>
+</testsuite>
+</testsuites>

@@ -1,0 +1,1 @@
+export const logintoSalesforceUrl = 'https://resourceful-impala-ehughf-dev-ed.trailblaze.my.salesforce-setup.com/lightning/page/home';
