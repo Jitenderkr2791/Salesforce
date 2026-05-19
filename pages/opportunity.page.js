@@ -50,5 +50,4 @@ export default class OpportunityPageMethods extends BasePage
     await this.selectStage(stage);
     await this.clickSaveButton();
   }
-
 }
