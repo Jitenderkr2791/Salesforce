@@ -1,17 +1,18 @@
 import { faker } from '@faker-js/faker';
-const uniqueNumber = `Account_${faker.person.firstName()}_${faker.number.int(10000)}`;
 
-export function generateAccountData()
-{
+function generateUniqueId() {
+    return `${faker.person.firstName()}_${faker.number.int(100000)}`;
+}
+
+export function generateAccountData(){
     return {
-        accountName: `Test automation Account ${uniqueNumber}`
+        accountName: `Account_${generateUniqueId()}`
     };
 }
 
-export function generateOpportunityData(accountName)
-{
+export function generateOpportunityData(accountName){
     return {
-        opportunityName: `Test automation Opportunity ${uniqueNumber}`,
+        opportunityName:`Opportunity_${generateUniqueId()}`,
         accountName: accountName,
         closeDate: '16/06/2026',
         stage: 'Prospecting'
