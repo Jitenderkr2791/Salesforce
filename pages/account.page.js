@@ -4,10 +4,10 @@ import accountPageLocators from '../pageobjects/accountPageLocators.js';
 export default class AccountPageMethods extends BasePage
 {  
     constructor(page)
-  {
-    super(page); 
-    this.page = page;
-  }
+    {
+        super(page); 
+        this.page = page;
+    }
 
     async navigateToAccountsTab()
     {
@@ -32,13 +32,13 @@ export default class AccountPageMethods extends BasePage
         await this.page.waitForSelector(successMessageLocator, { timeout: 10000 });
     }*/
 
-    async createNewAccount(accountName)
+    async createNewAccount(accountData)
     {   
         await this.navigateToAccountsTab();
         await this.clickNewButton();
-        await this.enterAccountName(accountName);
+        await this.enterAccountName(accountData.accountName);
         await this.clickSaveButton();
         //await this.verifyAccountCreation();
     }   
 
-}
+}   

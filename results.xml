@@ -1,44 +1,15 @@
-<testsuites id="" name="" tests="1" failures="0" skipped="0" errors="1" time="42.8194450000003">
-<testsuite name="TC_Login.spec.js" timestamp="2026-05-19T06:26:31.484Z" hostname="chrome" tests="1" failures="0" skipped="0" time="0.42" errors="1">
-<testcase name="Login to Salesforce › Step 2 - create new opportunity" classname="TC_Login.spec.js" time="0.42">
+<testsuites id="" name="" tests="1" failures="0" skipped="0" errors="0" time="37.827508999999615">
+<testsuite name="TC_Login.spec.js" timestamp="2026-05-19T11:08:14.113Z" hostname="chrome" tests="1" failures="0" skipped="0" time="3.538" errors="0">
+<testcase name="Login to Salesforce › Step 1 - create new account" classname="TC_Login.spec.js" time="3.538">
 <system-out>
 <![CDATA[ Starting Salesforce Login (Hybrid Mode)...
 Authenticator page detected. Waiting for mobile device approval...
 Still waiting for approval. 300s remaining...
-Still waiting for approval. 290s remaining...
-Still waiting for approval. 280s remaining...
+ Waiting for auth page...
 Login successful: https://resourceful-impala-ehughf-dev-ed.trailblaze.lightning.force.com/lightning/page/home
  Login successfully.
-
-[[ATTACHMENT|test-results\TC_Login-Login-to-Salesforce-Step-2---create-new-opportunity-chrome\error-context.md]]
-
-[[ATTACHMENT|test-results\TC_Login-Login-to-Salesforce-Step-2---create-new-opportunity-chrome\error-context.md]]
 ]]>
 </system-out>
-<error message="locator.waitFor: selector: expected string, got undefined" type="Error">
-<![CDATA[  [chrome] › TC_Login.spec.js:39:7 › Login to Salesforce › Step 2 - create new opportunity ─────────
-
-    Error: locator.waitFor: selector: expected string, got undefined
-
-       at ..\pages\base.page.js:38
-
-      36 |     async waitAndClick(selector) {
-      37 |         const element = this.page.locator(selector);
-    > 38 |         await element.waitFor({ state: 'visible' });
-         |                       ^
-      39 |         await element.click();
-      40 |     }
-      41 |
-        at OpportunityPageMethods.waitAndClick (C:\Users\MindRuby\Downloads\Salesforce\pages\base.page.js:38:23)
-        at OpportunityPageMethods.OpportunityNewButton (C:\Users\MindRuby\Downloads\Salesforce\pages\opportunity.page.js:19:16)
-        at OpportunityPageMethods.createNewOpportunity (C:\Users\MindRuby\Downloads\Salesforce\pages\opportunity.page.js:46:16)
-        at C:\Users\MindRuby\Downloads\Salesforce\tests\TC_Login.spec.js:41:9
-
-    Error Context: ..\test-results\TC_Login-Login-to-Salesforce-Step-2---create-new-opportunity-chrome\error-context.md
-
-    Error Context: ..\test-results\TC_Login-Login-to-Salesforce-Step-2---create-new-opportunity-chrome\error-context.md
-]]>
-</error>
 </testcase>
 </testsuite>
 </testsuites>

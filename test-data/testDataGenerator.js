@@ -1,5 +1,5 @@
 import { faker } from '@faker-js/faker';
-const uniqueNumber = Date.now();
+const uniqueNumber = `Account_${faker.person.firstName()}_${faker.number.int(10000)}`;
 
 export function generateAccountData()
 {

@@ -16,7 +16,7 @@ export default class OpportunityPageMethods extends BasePage
   }
   async OpportunityNewButton()
   {
-    await this.waitAndClick(OpportunityPageLocators.OpportunityNewButton);
+    await this.waitAndClick(OpportunityPageLocators.opportunityNewButton);
   }
   async enterOpportunityName(opportunityName)
   {
