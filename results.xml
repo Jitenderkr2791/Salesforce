@@ -1,21 +1,44 @@
-<testsuites id="" name="" tests="1" failures="0" skipped="0" errors="0" time="84.109416">
-<testsuite name="TC_Login.spec.js" timestamp="2026-05-13T13:19:42.023Z" hostname="chrome" tests="1" failures="0" skipped="0" time="72.5" errors="0">
-<testcase name="Login to Salesforce › Step 1 - login" classname="TC_Login.spec.js" time="72.5">
+<testsuites id="" name="" tests="1" failures="0" skipped="0" errors="1" time="42.8194450000003">
+<testsuite name="TC_Login.spec.js" timestamp="2026-05-19T06:26:31.484Z" hostname="chrome" tests="1" failures="0" skipped="0" time="0.42" errors="1">
+<testcase name="Login to Salesforce › Step 2 - create new opportunity" classname="TC_Login.spec.js" time="0.42">
 <system-out>
 <![CDATA[ Starting Salesforce Login (Hybrid Mode)...
- Waiting for Authenticator approval OR OTP screen...
- OTP screen detected directly
- Starting OTP Flow...
- OTP Attempt #1
- OTP Entered: 656576
- Invalid OTP: Error: Invalid or expired verification code. Try again.
- OTP cleared. Please re-enter OTP.
- OTP Attempt #2
- OTP Entered: 832480
- Login successful: https://resourceful-impala-ehughf-dev-ed.trailblaze.lightning.force.com/lightning/page/home
+Authenticator page detected. Waiting for mobile device approval...
+Still waiting for approval. 300s remaining...
+Still waiting for approval. 290s remaining...
+Still waiting for approval. 280s remaining...
+Login successful: https://resourceful-impala-ehughf-dev-ed.trailblaze.lightning.force.com/lightning/page/home
  Login successfully.
+
+[[ATTACHMENT|test-results\TC_Login-Login-to-Salesforce-Step-2---create-new-opportunity-chrome\error-context.md]]
+
+[[ATTACHMENT|test-results\TC_Login-Login-to-Salesforce-Step-2---create-new-opportunity-chrome\error-context.md]]
 ]]>
 </system-out>
+<error message="locator.waitFor: selector: expected string, got undefined" type="Error">
+<![CDATA[  [chrome] › TC_Login.spec.js:39:7 › Login to Salesforce › Step 2 - create new opportunity ─────────
+
+    Error: locator.waitFor: selector: expected string, got undefined
+
+       at ..\pages\base.page.js:38
+
+      36 |     async waitAndClick(selector) {
+      37 |         const element = this.page.locator(selector);
+    > 38 |         await element.waitFor({ state: 'visible' });
+         |                       ^
+      39 |         await element.click();
+      40 |     }
+      41 |
+        at OpportunityPageMethods.waitAndClick (C:\Users\MindRuby\Downloads\Salesforce\pages\base.page.js:38:23)
+        at OpportunityPageMethods.OpportunityNewButton (C:\Users\MindRuby\Downloads\Salesforce\pages\opportunity.page.js:19:16)
+        at OpportunityPageMethods.createNewOpportunity (C:\Users\MindRuby\Downloads\Salesforce\pages\opportunity.page.js:46:16)
+        at C:\Users\MindRuby\Downloads\Salesforce\tests\TC_Login.spec.js:41:9
+
+    Error Context: ..\test-results\TC_Login-Login-to-Salesforce-Step-2---create-new-opportunity-chrome\error-context.md
+
+    Error Context: ..\test-results\TC_Login-Login-to-Salesforce-Step-2---create-new-opportunity-chrome\error-context.md
+]]>
+</error>
 </testcase>
 </testsuite>
 </testsuites>

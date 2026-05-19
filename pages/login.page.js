@@ -1,9 +1,7 @@
 // pages/login.page.js
-import { loadTestData } from '../utils/dataLoader.js';
 import BasePage from './base.page.js';
-
-const userData = loadTestData('login.data.json');
 import loginPageLocators from '../pageobjects/loginPageLocators.js';
+import { salesforceUsername, salesforcePassword } from '../config.js';
 
 export default class LoginPageMethods extends BasePage
 {
@@ -14,13 +12,15 @@ export default class LoginPageMethods extends BasePage
     this.homeUrlPattern =/lightning\/page\/home/; // Salesforce Home URL Pattern
     this.errorLocator = this.page.locator(loginPageLocators.errorLocator);
     this.otpLocator = this.page.locator(loginPageLocators.otpInput).first();
+    this.authenticatorPageHeading = this.page.locator(loginPageLocators.authenticatorPageHeading);
+    this.otpPageHeading = this.page.locator(loginPageLocators.otpPageHeading);
   }
 
   // Enter Username & Password
   async enterCredentials()
   {
-    await this.waitAndType(loginPageLocators.userNameInput,userData.userName );
-    await this.waitAndType(loginPageLocators.passwordInput,userData.loginPassword);
+    await this.waitAndType(loginPageLocators.userNameInput,salesforceUsername );
+    await this.waitAndType(loginPageLocators.passwordInput,salesforcePassword);
     await this.waitAndClick(loginPageLocators.loginButton);
   }
   
@@ -28,7 +28,7 @@ export default class LoginPageMethods extends BasePage
   { 
     await this.waitAndClick(loginPageLocators.verifyButton);   // Click Verify Button
   }
-  
+  /*
   async clickHavingTrouble()
   {
     await this.waitAndClick(loginPageLocators.havingTrouble);
@@ -37,7 +37,7 @@ export default class LoginPageMethods extends BasePage
   async clickDifferentVerificationMethod()
   {
     await this.waitAndClick(loginPageLocators.differentVerificationMethod);
-  }
+  }*/
 
   // Wait For Valid 6 Digit OTP
   async waitForSixDigitOtpFromInput()
@@ -55,7 +55,7 @@ export default class LoginPageMethods extends BasePage
         await this.page.waitForTimeout(10000);
       }
       throw new Error('Timeout waiting for 6-digit OTP.');
-   }
+    }
 
   
   // Reusable OTP Flow
@@ -65,7 +65,6 @@ export default class LoginPageMethods extends BasePage
 
     // Wait for OTP Screen
     await this.otpLocator.waitFor({state: 'visible',timeout: 60000});
-
     for ( let attempt = 1;attempt <= maxOtpAttempts;attempt++)
     {
       console.log(` OTP Attempt #${attempt}`);
@@ -84,7 +83,7 @@ export default class LoginPageMethods extends BasePage
       // LOGIN SUCCESS
       if (result === 'success')
       {
-        console.log(` Login successful: ${this.page.url()}`);
+        console.log(`Login successful: ${this.page.url()}`);
         return;
       }
 
@@ -97,11 +96,11 @@ export default class LoginPageMethods extends BasePage
         try
         {
           await this.otpLocator.fill('');
-          console.log(' OTP cleared. Please re-enter OTP.');
+          console.log('OTP cleared. Please re-enter OTP.');
         }
         catch
         {
-          console.log(' Unable to clear OTP field.');
+          console.log('Unable to clear OTP field.');
         }
         continue;
       }
@@ -109,50 +108,57 @@ export default class LoginPageMethods extends BasePage
       // Fallback URL Check
       if (this.homeUrlPattern.test(this.page.url()))
       {
-        console.log(` Login successful (fallback): ${this.page.url()}`);
+        console.log(`Login successful (fallback): ${this.page.url()}`);
         return;
       }
       await this.page.waitForTimeout(2000);
     }
-    throw new Error(` OTP failed after ${maxOtpAttempts} attempts`); // Max Attempts Failed
+    throw new Error(`OTP failed after ${maxOtpAttempts} attempts`); // Max Attempts Failed
   }
 
   
-  async loginSmartHybrid({maxOtpAttempts = 3,authTimeout = 60000} = {})
+  async loginSmartHybrid({maxOtpAttempts = 3, authTimeout = 60000} = {})
   {
     console.log(' Starting Salesforce Login (Hybrid Mode)...');
     await this.enterCredentials();
-    console.log(' Waiting for Authenticator approval OR OTP screen...'); 
 
-    const currentUrl = this.page.url();
-    const result = await Promise.race 
-    ([ // Authenticator success (detect via URL change from current URL)
-      this.page.waitForURL((url) => url !== currentUrl && this.homeUrlPattern.test(url),{ timeout: authTimeout }).then(() => 'auth_success').catch(() => null), 
-      // OTP screen visible directly
-      this.otpLocator.waitFor({state: 'visible',timeout: authTimeout}).then(() => 'otp_visible').catch(() => null)
-    ]);
+    const deadline = Date.now() + authTimeout;
+    const checkInterval = 10000; // 10 seconds
+    let authenticatorDetected = false;
 
-  
-    // CASE 1 → AUTH SUCCESS
-    if (result === 'auth_success')
+    while (Date.now() < deadline)
     {
-      console.log(` Login successful via Authenticator: ${this.page.url()}`);
-      return;
-    }
+      // Check for direct login success first
+      if (this.homeUrlPattern.test(this.page.url()))
+      {
+        console.log(`Login successful: ${this.page.url()}`);
+        return;
+      }
 
-    // CASE 2 → OTP SCREEN VISIBLE
-    if (result === 'otp_visible')
-    {
-      console.log(' OTP screen detected directly');
-      await this.performOtpFlow(maxOtpAttempts);
-      return;
+      if (await this.otpPageHeading.isVisible().catch(() => false))
+      {
+        console.log('OTP page detected. Starting OTP flow...');
+        await this.performOtpFlow(maxOtpAttempts);
+        return;
+      }
+
+      if (await this.authenticatorPageHeading.isVisible().catch(() => false))
+      {
+        if (!authenticatorDetected)
+        {
+          console.log('Authenticator page detected. Waiting for mobile device approval...');
+          authenticatorDetected = true;
+        }
+        const remainingTime = deadline - Date.now();
+        console.log(`Still waiting for approval. ${Math.round(remainingTime / 1000)}s remaining...`);
+        await this.page.waitForTimeout(checkInterval).catch(() => {});
+        continue;
+      }
+
+      console.log(' Waiting for auth page...');
+      await this.page.waitForTimeout(checkInterval).catch(() => {});
     }
-  
-    // CASE 3 → AUTH TIMEOUT
-    console.log(' Authenticator timeout → switching to OTP flow');
-    //await this.clickHavingTrouble(); // Click "Having Trouble?" and wait for options to load
-    //await this.clickDifferentVerificationMethod(); // Switch to different method (OTP)
-    // Start OTP Flow
+    console.log(' Timeout → switching to OTP fallback');
     await this.performOtpFlow(maxOtpAttempts);
   }
 }

@@ -5,13 +5,19 @@
   "main": "index.js",
   "scripts": {
     "test": "npx playwright test && npm run allure:open",
-    "test:serial": "npx playwright test --workers=1 --project=Chrome",
-    "test:chrome": "npx playwright test --project=Chrome",
+    "test:dev": "cross-env NODE_ENV=dev playwright test",
+    "test:stage": "cross-env NODE_ENV=stage playwright test",
+    "test:prod": "cross-env NODE_ENV=prod playwright test",
+    "test:dev:headed": "cross-env NODE_ENV=dev playwright test --headed",
+    "test:stage:headed": "cross-env NODE_ENV=stage playwright test --headed",
+    "test:prod:headed": "cross-env NODE_ENV=prod playwright test --headed",
+    "test:serial": "playwright test --workers=1 --project=Chrome",
+    "test:chrome": "playwright test --project=Chrome",
     "test:firefox": "npx playwright test --project=Firefox --reporter=list",
     "test:safari": "npx playwright test --project=Safari",
     "test:edge": "npx playwright test --project=Edge",
     "test:chrome-report": "npx playwright test --project=Chrome --reporter=html && npx playwright show-report",
-     "test:firefox-report": "npx playwright test --project=Firefox --reporter=line,allure-playwright",
+    "test:firefox-report": "npx playwright test --project=Firefox --reporter=line,allure-playwright",
     "test:edge-report": "npx playwright test --project=Edge --reporter=html && npx playwright show-report",
     "test:safari-report": "npx playwright test --project=Safari --reporter=line,allure-playwright",
     "test:shard": "npx playwright test  --shard=3/3 --project=Chrome",
@@ -24,24 +30,25 @@
     "allure:open": "npm run allure:generate && npx allure open allure-report"
   },
   "keywords": [
-     "Plawright",
-     "Test Automation",
-     "JavaScript"
-    ],
+    "Plawright",
+    "Test Automation",
+    "JavaScript"
+  ],
   "author": "Jitender kumar",
   "license": "ISC",
   "dependencies": {
+    "@faker-js/faker": "^10.4.0",
     "prettier": "^2.6.2"
   },
   "directories": {
     "test": "tests"
-   },
-
+  },
   "type": "module",
   "devDependencies": {
     "@playwright/test": "^1.59.1",
     "@types/node": "^25.6.2",
     "allure-commandline": "^2.40.0",
-    "allure-playwright": "^3.7.2"
+    "allure-playwright": "^3.7.2",
+    "cross-env": "^10.1.0"
   }
 }
