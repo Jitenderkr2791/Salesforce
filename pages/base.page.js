@@ -35,7 +35,7 @@ class BasePage
 
     async waitAndClick(selector) {
         const element = this.page.locator(selector);
-        await element.waitFor({ state: 'visible' });
+        await element.waitFor({ state: 'visible', timeout: 15000 });
         await element.click();
     }
 
@@ -48,61 +48,112 @@ class BasePage
         }
     }
 
-    async waitAndFill(selector, text) {
-        const element = this.page.locator(selector);
-        await element.waitFor({ state: 'visible' });
-        await element.fill(text);
+    async waitAndFill(selector, text) 
+    {
+    const element = this.page.locator(selector);
+    await element.waitFor({ state: 'visible', timeout: 30000 });
+    await element.scrollIntoViewIfNeeded();
+    await element.click();
+    await element.fill(text);
+    console.log(`Entered value: ${text}`);
     }
 
-    async waitAndType(selector, text) {
+    async waitAndType(selector, text) 
+    {
         await this.waitAndFill(selector, text);
     }
 
-    async keyPress(selector, key) {
+    async keyPress(selector, key) 
+    {
         await this.page.locator(selector).press(key);
     }
 
     /** ---------- Dropdown ---------- **/
-   async selectValueFromDropdown(selector, valueOrLabel) {
-    const dropdown = this.page.locator(selector);
-    await dropdown.waitFor({ state: 'visible' });
+   static async enterTextAndSelectValueFromDropdown(page, inputSelector, value, optionSelector) 
+    {
+        const input = page.locator(inputSelector);
+        await input.click();
+        await input.fill(value);
+        const options = page.locator(optionSelector);
+        await options.first().waitFor({ state: 'visible', timeout: 15000 });
+        const count = await options.count();
+        console.log("Available dropdown options:");
 
-        try {
-            // Try selecting by value
-            const result = await dropdown.selectOption({ value: valueOrLabel });
-            if (result && result.length > 0) {
-            console.log(` Selected "${valueOrLabel}" by value`);
-            return;
-            }
-
-            // If value not found, try by label
-            await dropdown.selectOption({ label: valueOrLabel });
-            console.log(` Selected "${valueOrLabel}" by label`);
-        } catch (error) {
-            console.error(` Failed to select "${valueOrLabel}" from dropdown ${selector}`, error);
-            throw error;
-        }
+        for (let i = 0; i < count; i++) 
+         {
+            const option = options.nth(i);
+            let optionText = await option.getAttribute('title');
+            if (!optionText) {
+                optionText = (await option.textContent())?.trim();
+                }
+            console.log(` ${i + 1}. ${optionText}`);
+            if (optionText && optionText.toLowerCase().includes(value.toLowerCase())) 
+                {
+                    console.log(`Match found: "${optionText}" → Clicking`);
+                    await option.click();
+                    return;
+                }
+         }
+    throw new Error(`Value "${value}" not found in dropdown`);
     }
 
+    async selectValueFromDropdown(inputSelector, optionSelector, value) 
+    {
+        
+        const input = this.page.locator(inputSelector);      // 1. Click dropdown
+        await input.waitFor({ state: 'visible', timeout: 15000 });   
+        await input.click();
+        console.log(`Clicked dropdown: ${inputSelector}`);
+        
+        const options = this.page.locator(`${optionSelector}:visible`);  // 2. Locate options dynamically
+
+        await options.first().waitFor({ state: 'visible', timeout: 15000 });
+
+        const count = await options.count();
+        console.log(`Total options found: ${count}`);
+
+        for (let i = 0; i < count; i++)      // 3. Loop through options
+        {
+            const option = options.nth(i);
+            let text = await option.locator('[title]').getAttribute('title');
+            if (!text) 
+                {
+                text = (await option.textContent())?.trim();
+                }
+            console.log(`Option ${i + 1}: ${text}`);
+           
+            if (text && text.toLowerCase() === value.toLowerCase())      // 4. Match & click
+                {
+                    console.log(`Selected: ${text}`);
+                    await option.scrollIntoViewIfNeeded();
+                    await option.click();
+                    return;
+                }
+        }
+    throw new Error(`Value "${value}" not found in dropdown`);
+    }
 
     /** ---------- Verifications ---------- **/
-
-    async verifyElementText(selector, expectedText) {
+    async verifyElementText(selector, expectedText) 
+    {
         const textValue = await this.page.textContent(selector);
         expect(textValue?.trim()).toBe(expectedText);
     }
 
-    async verifyElementContainsText(selector, expectedText) {
+    async verifyElementContainsText(selector, expectedText) 
+    {
         const locator = this.page.locator(selector);
         await expect(locator).toContainText(expectedText);
     }
 
-    async verifyJSElementValue(selector, expectedValue) {
+    async verifyJSElementValue(selector, expectedValue) 
+    {
         const value = await this.page.$eval(selector, el => el.value);
         expect(value?.trim()).toBe(expectedValue);
     }
 
-    async verifyElementAttribute(selector, attribute, expectedValue) {
+    async verifyElementAttribute(selector, attribute, expectedValue) 
+    {
         const attrValue = await this.page.getAttribute(selector, attribute);
         expect(attrValue?.trim()).toBe(expectedValue);
     }

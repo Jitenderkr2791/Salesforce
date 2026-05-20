@@ -1,13 +1,32 @@
-<testsuites id="" name="" tests="1" failures="0" skipped="0" errors="0" time="37.191777999997136">
-<testsuite name="TC_Login.spec.js" timestamp="2026-05-19T11:19:04.393Z" hostname="chrome" tests="1" failures="0" skipped="0" time="5.41" errors="0">
-<testcase name="Login to Salesforce › Step 1 - create new account" classname="TC_Login.spec.js" time="5.41">
+<testsuites id="" name="" tests="2" failures="0" skipped="0" errors="0" time="44.13252499999106">
+<testsuite name="TC_Login.spec.js" timestamp="2026-05-20T10:09:54.045Z" hostname="chrome" tests="2" failures="0" skipped="0" time="10.452" errors="0">
+<testcase name="Login to Salesforce › Step 1 - create new account" classname="TC_Login.spec.js" time="4.254">
 <system-out>
 <![CDATA[ Starting Salesforce Login (Hybrid Mode)...
+Entered value: jk885827@resourceful-impala-ehughf.com
+Entered value: Test@12345678
 Authenticator page detected. Waiting for mobile device approval...
 Still waiting for approval. 300s remaining...
-Still waiting for approval. 290s remaining...
+ Waiting for auth page...
 Login successful: https://resourceful-impala-ehughf-dev-ed.trailblaze.lightning.force.com/lightning/page/home
  Login successfully.
+Entered value: Account_Rosamond_15668
+]]>
+</system-out>
+</testcase>
+<testcase name="Login to Salesforce › Step 2 - create new opportunity" classname="TC_Login.spec.js" time="6.198">
+<system-out>
+<![CDATA[Opportunity modal loaded
+Entered value: Opportunity_Myriam_63934
+Available dropdown options:
+ 1. Account_Rosamond_15668
+Match found: "Account_Rosamond_15668" → Clicking
+Entered value: 16/06/2026
+Clicked dropdown: button[aria-label='Stage']
+Total options found: 11
+Option 1: --None--
+Option 2: Prospecting
+Selected: Prospecting
 ]]>
 </system-out>
 </testcase>

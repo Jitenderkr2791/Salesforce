@@ -14,32 +14,40 @@ export default class OpportunityPageMethods extends BasePage
   {
     await this.waitAndClick(OpportunityPageLocators.opportunitiesHomeTab);
   }
+
   async OpportunityNewButton()
   {
     await this.waitAndClick(OpportunityPageLocators.opportunityNewButton);
+    // WAIT for modal/input to appear
+    await this.page.locator(OpportunityPageLocators.opportunityNameInput).waitFor({ state: 'visible', timeout: 30000 });
+    console.log("Opportunity modal loaded");
   }
+
   async enterOpportunityName(opportunityName)
   {
     await this.waitAndType(OpportunityPageLocators.opportunityNameInput, String(opportunityName));
   } 
+
   async enterAccountName(accountName)
   {
-    await this.selectValueFromDropdown(OpportunityPageLocators.accountNameInput, String(accountName));
+  await BasePage.enterTextAndSelectValueFromDropdown(this.page,OpportunityPageLocators.accountNameInput,String(accountName),OpportunityPageLocators.accountDropdownOptions)  
   }
+
   async enterCloseDate(closeDate)
   {
     await this.waitAndType(OpportunityPageLocators.closeDateInput, String(closeDate));
   }
+
   async selectStage(stage)
   {
-    await this.waitAndClick(OpportunityPageLocators.stageDropdown);
-    await this.waitAndClick(OpportunityPageLocators.stageOption(stage));
+    await this.selectValueFromDropdown(OpportunityPageLocators.stageDropdown, OpportunityPageLocators.stageOption, String(stage));
   }
+
   async clickSaveButton()
   {
     await this.waitAndClick(OpportunityPageLocators.saveButton);
   }
-  
+
   async createNewOpportunity(opportunityName, accountName, closeDate, stage)
   {
     await this.navigateToOpportunityTab();
