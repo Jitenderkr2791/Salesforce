@@ -1,6 +1,6 @@
-<testsuites id="" name="" tests="2" failures="0" skipped="0" errors="0" time="44.13252499999106">
-<testsuite name="TC_Login.spec.js" timestamp="2026-05-20T10:09:54.045Z" hostname="chrome" tests="2" failures="0" skipped="0" time="10.452" errors="0">
-<testcase name="Login to Salesforce › Step 1 - create new account" classname="TC_Login.spec.js" time="4.254">
+<testsuites id="" name="" tests="2" failures="0" skipped="1" errors="1" time="37.551358">
+<testsuite name="TC_Login.spec.js" timestamp="2026-05-20T11:20:23.616Z" hostname="chrome" tests="2" failures="0" skipped="1" time="3.937" errors="1">
+<testcase name="Login to Salesforce › Step 1 - create new account" classname="TC_Login.spec.js" time="3.937">
 <system-out>
 <![CDATA[ Starting Salesforce Login (Hybrid Mode)...
 Entered value: jk885827@resourceful-impala-ehughf.com
@@ -10,25 +10,40 @@ Still waiting for approval. 300s remaining...
  Waiting for auth page...
 Login successful: https://resourceful-impala-ehughf-dev-ed.trailblaze.lightning.force.com/lightning/page/home
  Login successfully.
-Entered value: Account_Rosamond_15668
+Entered value: Account_Lisa_84675
+
+[[ATTACHMENT|test-results\TC_Login-Login-to-Salesforce-Step-1---create-new-account-chrome\error-context.md]]
+
+[[ATTACHMENT|test-results\TC_Login-Login-to-Salesforce-Step-1---create-new-account-chrome\error-context.md]]
 ]]>
 </system-out>
+<error message="accountData is not defined" type="ReferenceError">
+<![CDATA[  [chrome] › TC_Login.spec.js:34:7 › Login to Salesforce › Step 1 - create new account ─────────────
+
+    ReferenceError: accountData is not defined
+
+       at ..\pages\account.page.js:31
+
+      29 |     async verifyAccountCreation()
+      30 |     {
+    > 31 |         const successMessageLocator = `//span[contains(text(),'${accountData.accountName} was created.')]`;
+         |                                                                  ^
+      32 |         await this.page.waitForSelector(successMessageLocator, { timeout: 10000 });
+      33 |     }
+      34 |
+        at AccountPageMethods.verifyAccountCreation (C:\Users\MindRuby\Downloads\Salesforce\pages\account.page.js:31:66)
+        at AccountPageMethods.createNewAccount (C:\Users\MindRuby\Downloads\Salesforce\pages\account.page.js:41:20)
+        at C:\Users\MindRuby\Downloads\Salesforce\tests\TC_Login.spec.js:36:9
+
+    Error Context: ..\test-results\TC_Login-Login-to-Salesforce-Step-1---create-new-account-chrome\error-context.md
+
+    Error Context: ..\test-results\TC_Login-Login-to-Salesforce-Step-1---create-new-account-chrome\error-context.md
+]]>
+</error>
 </testcase>
-<testcase name="Login to Salesforce › Step 2 - create new opportunity" classname="TC_Login.spec.js" time="6.198">
-<system-out>
-<![CDATA[Opportunity modal loaded
-Entered value: Opportunity_Myriam_63934
-Available dropdown options:
- 1. Account_Rosamond_15668
-Match found: "Account_Rosamond_15668" → Clicking
-Entered value: 16/06/2026
-Clicked dropdown: button[aria-label='Stage']
-Total options found: 11
-Option 1: --None--
-Option 2: Prospecting
-Selected: Prospecting
-]]>
-</system-out>
+<testcase name="Login to Salesforce › Step 2 - create new opportunity" classname="TC_Login.spec.js">
+<skipped>
+</skipped>
 </testcase>
 </testsuite>
 </testsuites>

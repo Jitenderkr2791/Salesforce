@@ -2,7 +2,7 @@ const OpportunityPageLocators =
 { 
 opportunitiesHomeTab: "a[title='Opportunities']",
 opportunityNewButton: "div[title='New']",
-opportunityNameInput: "input[name='Name']",
+opportunityNameInput: "//input[@class='slds-input'][@name='Name']",
 
 accountNameInput: "input[role='combobox'][aria-label='Account Name']",
 accountDropdownOptions: "lightning-base-combobox-formatted-text",

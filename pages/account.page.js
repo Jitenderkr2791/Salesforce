@@ -26,11 +26,11 @@ export default class AccountPageMethods extends BasePage
         await this.waitAndClick(accountPageLocators.saveButton);
     }
 
-    /*async verifyAccountCreation()
+    async verifyAccountCreation()
     {
-        const successMessageLocator = `//span[contains(text(),'${userData.accountName} was created.')]`;
+        const successMessageLocator = `//span[contains(text(),'${accountData.accountName} was created.')]`;
         await this.page.waitForSelector(successMessageLocator, { timeout: 10000 });
-    }*/
+    }
 
     async createNewAccount(accountData)
     {   
@@ -38,7 +38,7 @@ export default class AccountPageMethods extends BasePage
         await this.clickNewButton();
         await this.enterAccountName(accountData.accountName);
         await this.clickSaveButton();
-        //await this.verifyAccountCreation();
+        await this.verifyAccountCreation();
     }   
 
 }   
