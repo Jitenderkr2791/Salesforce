@@ -24,7 +24,7 @@ test.describe.serial('Login to Salesforce', () => {
     test.afterAll(async () => 
           {     
             await context.close(); 
-            });
+          });
       
     test('Step 1 - create new account via Standard Process', async () => 
         { 
