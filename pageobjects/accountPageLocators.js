@@ -2,8 +2,12 @@ const  accountPageLocators =
     {
         accountsHomeTab: "//a[@title='Accounts']", 
         accountNewButton: "//div[@title='New']",
-        accountNameInput: "//input[@name='Name']",
+        accountNameInput: "(//input[@name='Name'])[1]",
         saveButton: "//button[@name='SaveEdit']",
-        successMessage: "//span[contains(text(),'was created.')]"   
+        successMessage: "//span[contains(text(),'was created.')]",
+
+        OppoPagenewAccount :"//span[text()='New Account']",
+        OppoPageAccountNameInput :"//h2[text()='New Account']/ancestor::div[contains(@class,'modal')]//input[@name='Name']",
+        OppoPageNewAccountSaveButton :"//h2[text()='New Account']/ancestor::div[contains(@class,'modal')]//button[@name='SaveEdit']",
     }
 export default accountPageLocators;

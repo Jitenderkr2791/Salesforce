@@ -1,39 +1,24 @@
 # Environment Configuration Guide
-
 ## How to Run Tests in Different Environments
-
 ### Development Environment (Default)
 ```bash
-# Uses dev environment by default
-npx playwright test
+npx playwright test     # Uses dev environment by default
 ```
-
 ### Stage Environment
 ```bash
-# Linux / macOS
-NODE_ENV=stage npx playwright test
-
-# Windows CMD
-set NODE_ENV=stage && npx playwright test
-
-# Windows PowerShell
-$env:NODE_ENV = "stage"; npx playwright test
-
-# Alternatively, use the npm script if cross-env is installed
-npm run test:stage
+NODE_ENV=stage npx playwright test    # Linux / macOS
+set NODE_ENV=stage && npx playwright test   # Windows CMD
+$env:NODE_ENV = "stage"; npx playwright test    # Windows PowerShell
+npm run test:stage    # Alternatively, use the npm script if cross-env is installed
 ```
-
 ### Production Environment
 ```bash
 # Linux / macOS
 NODE_ENV=prod npx playwright test
-
 # Windows CMD
 set NODE_ENV=prod && npx playwright test
-
 # Windows PowerShell
 $env:NODE_ENV = "prod"; npx playwright test
-
 # Alternatively, use the npm script if cross-env is installed
 npm run test:prod
 ```

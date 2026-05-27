@@ -1,49 +1,63 @@
-<testsuites id="" name="" tests="2" failures="0" skipped="1" errors="1" time="37.551358">
-<testsuite name="TC_Login.spec.js" timestamp="2026-05-20T11:20:23.616Z" hostname="chrome" tests="2" failures="0" skipped="1" time="3.937" errors="1">
-<testcase name="Login to Salesforce › Step 1 - create new account" classname="TC_Login.spec.js" time="3.937">
+<testsuites id="" name="" tests="4" failures="0" skipped="0" errors="0" time="66.46694299999997">
+<testsuite name="TC_Login.spec.js" timestamp="2026-05-27T11:04:38.001Z" hostname="chrome" tests="4" failures="0" skipped="0" time="32.405" errors="0">
+<testcase name="Login to Salesforce › Step 1 - create new account via Standard Process" classname="TC_Login.spec.js" time="3.562">
 <system-out>
 <![CDATA[ Starting Salesforce Login (Hybrid Mode)...
 Entered value: jk885827@resourceful-impala-ehughf.com
 Entered value: Test@12345678
 Authenticator page detected. Waiting for mobile device approval...
-Still waiting for approval. 300s remaining...
+Still waiting for approval. 30s remaining...
  Waiting for auth page...
 Login successful: https://resourceful-impala-ehughf-dev-ed.trailblaze.lightning.force.com/lightning/page/home
  Login successfully.
-Entered value: Account_Lisa_84675
-
-[[ATTACHMENT|test-results\TC_Login-Login-to-Salesforce-Step-1---create-new-account-chrome\error-context.md]]
-
-[[ATTACHMENT|test-results\TC_Login-Login-to-Salesforce-Step-1---create-new-account-chrome\error-context.md]]
+Account Data Generated
+Entered value: Account_Felicia_63966
 ]]>
 </system-out>
-<error message="accountData is not defined" type="ReferenceError">
-<![CDATA[  [chrome] › TC_Login.spec.js:34:7 › Login to Salesforce › Step 1 - create new account ─────────────
-
-    ReferenceError: accountData is not defined
-
-       at ..\pages\account.page.js:31
-
-      29 |     async verifyAccountCreation()
-      30 |     {
-    > 31 |         const successMessageLocator = `//span[contains(text(),'${accountData.accountName} was created.')]`;
-         |                                                                  ^
-      32 |         await this.page.waitForSelector(successMessageLocator, { timeout: 10000 });
-      33 |     }
-      34 |
-        at AccountPageMethods.verifyAccountCreation (C:\Users\MindRuby\Downloads\Salesforce\pages\account.page.js:31:66)
-        at AccountPageMethods.createNewAccount (C:\Users\MindRuby\Downloads\Salesforce\pages\account.page.js:41:20)
-        at C:\Users\MindRuby\Downloads\Salesforce\tests\TC_Login.spec.js:36:9
-
-    Error Context: ..\test-results\TC_Login-Login-to-Salesforce-Step-1---create-new-account-chrome\error-context.md
-
-    Error Context: ..\test-results\TC_Login-Login-to-Salesforce-Step-1---create-new-account-chrome\error-context.md
-]]>
-</error>
 </testcase>
-<testcase name="Login to Salesforce › Step 2 - create new opportunity" classname="TC_Login.spec.js">
-<skipped>
-</skipped>
+<testcase name="Login to Salesforce › Step 2 - create new opportunity via Standard Process" classname="TC_Login.spec.js" time="9.37">
+<system-out>
+<![CDATA[Opportunity Data Generated
+Entered value: Opportunity_Casandra_96432
+Available dropdown options:
+ 1. Account_Felicia_63966
+Match found: "Account_Felicia_63966" → Clicking
+Entered value: 16/06/2026
+Clicked dropdown: button[aria-label='Stage']
+Total options found: 11
+Option 1: --None--
+Option 2: Prospecting
+Selected: Prospecting
+]]>
+</system-out>
+</testcase>
+<testcase name="Login to Salesforce › Step 3 - create Opportunity via Account related tab" classname="TC_Login.spec.js" time="10.836">
+<system-out>
+<![CDATA[Entered value: Account_Felicia_63966
+Entered value: Opportunity_Casandra_96432
+Entered value: 16/06/2026
+Clicked dropdown: button[aria-label='Stage']
+Total options found: 11
+Option 1: --None--
+Option 2: Prospecting
+Selected: Prospecting
+]]>
+</system-out>
+</testcase>
+<testcase name="Login to Salesforce › Step 4 - create Account Created Via Opportunity" classname="TC_Login.spec.js" time="8.637">
+<system-out>
+<![CDATA[Account Data Generated
+Opportunity Data Generated
+Entered value: Opportunity_Rosemarie_90582
+Entered value: Account_Bettye_15535
+Entered value: 16/06/2026
+Clicked dropdown: button[aria-label='Stage']
+Total options found: 11
+Option 1: --None--
+Option 2: Prospecting
+Selected: Prospecting
+]]>
+</system-out>
 </testcase>
 </testsuite>
 </testsuites>

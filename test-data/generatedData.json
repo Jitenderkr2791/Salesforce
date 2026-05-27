@@ -1,0 +1,11 @@
+{
+  "account": {
+    "accountName": "Account_Bettye_15535"
+  },
+  "opportunity": {
+    "opportunityName": "Opportunity_Rosemarie_90582",
+    "accountName": "Account_Bettye_15535",
+    "closeDate": "16/06/2026",
+    "stage": "Prospecting"
+  }
+}

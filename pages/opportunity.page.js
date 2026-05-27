@@ -1,6 +1,7 @@
 // pages/opportunity.page.js
 import BasePage from './base.page.js';
-import OpportunityPageLocators from '../pageobjects/opportunityPageLocators.js';
+import opportunityPageLocators from '../pageobjects/opportunityPageLocators.js';
+import accountPageLocators from '../pageobjects/accountPageLocators.js';
 
 export default class OpportunityPageMethods extends BasePage
 {
@@ -12,40 +13,38 @@ export default class OpportunityPageMethods extends BasePage
 
   async navigateToOpportunityTab()
   {
-    await this.waitAndClick(OpportunityPageLocators.opportunitiesHomeTab);
+    await this.waitAndClick(opportunityPageLocators.opportunitiesHomeTab);
   }
 
   async OpportunityNewButton()
   {
-    await this.waitAndClick(OpportunityPageLocators.opportunityNewButton);
-    // WAIT for modal/input to appear
-    await this.page.locator(OpportunityPageLocators.opportunityNameInput).waitFor({ state: 'visible', timeout: 30000 });
-    console.log("Opportunity modal loaded");
+    await this.waitAndClick(opportunityPageLocators.opportunityNewButton);      // WAIT for modal/input to appear
+    await this.page.locator(opportunityPageLocators.opportunityNameInput).waitFor({ state: 'visible', timeout: 30000 });
   }
 
   async enterOpportunityName(opportunityName)
   {
-    await this.waitAndType(OpportunityPageLocators.opportunityNameInput, String(opportunityName));
+    await this.waitAndType(opportunityPageLocators.opportunityNameInput, String(opportunityName));
   } 
 
   async enterAccountName(accountName)
   {
-  await BasePage.enterTextAndSelectValueFromDropdown(this.page,OpportunityPageLocators.accountNameInput,String(accountName),OpportunityPageLocators.accountDropdownOptions)  
+  await BasePage.enterTextAndSelectValueFromDropdown(this.page,opportunityPageLocators.accountNameInput,String(accountName),opportunityPageLocators.accountDropdownOptions)  
   }
 
   async enterCloseDate(closeDate)
   {
-    await this.waitAndType(OpportunityPageLocators.closeDateInput, String(closeDate));
+    await this.waitAndType(opportunityPageLocators.closeDateInput, String(closeDate));
   }
 
   async selectStage(stage)
   {
-    await this.selectValueFromDropdown(OpportunityPageLocators.stageDropdown, OpportunityPageLocators.stageOption, String(stage));
+    await this.selectValueFromDropdown(opportunityPageLocators.stageDropdown, opportunityPageLocators.stageOption, String(stage));
   }
 
   async clickSaveButton()
   {
-    await this.waitAndClick(OpportunityPageLocators.saveButton);
+    await this.waitAndClick(opportunityPageLocators.saveButton);
   }
 
   async createNewOpportunity(opportunityName, accountName, closeDate, stage)
@@ -58,4 +57,28 @@ export default class OpportunityPageMethods extends BasePage
     await this.selectStage(stage);
     await this.clickSaveButton();
   }
+
+    async clickRelatedTab()
+    {
+        await this.waitAndClick(opportunityPageLocators.accountRelatableTab);
+    }
+
+    async clickRelatedTabNewOpportunityButton()
+    {
+        await this.waitAndClick(opportunityPageLocators.accountOpportunityNewTab);
+    }
+    
+    async createNewOpportunityViaAccountRelatedTab(accountName,opportunityName,closeDate,stage)
+    {
+        await this.waitAndClick(accountPageLocators.accountsHomeTab);
+        await this.waitAndType(opportunityPageLocators.searchAccountInput, String(accountName));
+        await this.page.keyboard.press('Enter');
+        await this.waitAndClick(opportunityPageLocators.accountLink(accountName));
+        await this.clickRelatedTab();
+        await this.clickRelatedTabNewOpportunityButton();
+        await this.enterOpportunityName(opportunityName);
+        await this.enterCloseDate(closeDate);
+        await this.selectStage(stage);
+        await this.clickSaveButton();
+    }
 }

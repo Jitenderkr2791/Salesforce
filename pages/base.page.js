@@ -31,9 +31,22 @@ class BasePage
         await this.page.waitForTimeout(milliseconds);
     }
 
+     async waitForPageStable() {
+        await this.page.waitForLoadState('domcontentloaded');
+
+        const spinner = this.page.locator('.slds-spinner');
+
+        if (await spinner.count() > 0) {
+            await spinner.first().waitFor({ state: 'hidden', timeout: 10000 });
+        }
+
+        await this.page.waitForTimeout(300);
+    }
+
     /** ---------- Clicks & Typing ---------- **/
 
     async waitAndClick(selector) {
+        await this.waitForPageStable();
         const element = this.page.locator(selector);
         await element.waitFor({ state: 'visible', timeout: 15000 });
         await element.click();
@@ -50,12 +63,13 @@ class BasePage
 
     async waitAndFill(selector, text) 
     {
-    const element = this.page.locator(selector);
-    await element.waitFor({ state: 'visible', timeout: 30000 });
-    await element.scrollIntoViewIfNeeded();
-    await element.click();
-    await element.fill(text);
-    console.log(`Entered value: ${text}`);
+        await this.waitForPageStable();
+        const element = this.page.locator(selector);
+        await element.waitFor({ state: 'visible', timeout: 30000 });
+        await element.scrollIntoViewIfNeeded();
+        await element.click();
+        await element.fill(text);
+        console.log(`Entered value: ${text}`);
     }
 
     async waitAndType(selector, text) 
