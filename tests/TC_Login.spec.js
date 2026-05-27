@@ -10,7 +10,8 @@ test.describe.serial('Login to Salesforce', () => {
   let login, opportunity;
   let testData;
   let account ;
-
+  test.setTimeout(60000);
+  
     test.beforeAll(async ({ browser }) => 
       {     
         context = await browser.newContext();
