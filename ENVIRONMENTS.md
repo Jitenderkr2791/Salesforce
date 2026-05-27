@@ -13,14 +13,14 @@ npm run test:stage    # Alternatively, use the npm script if cross-env is instal
 ```
 ### Production Environment
 ```bash
-# Linux / macOS
-NODE_ENV=prod npx playwright test
-# Windows CMD
-set NODE_ENV=prod && npx playwright test
-# Windows PowerShell
-$env:NODE_ENV = "prod"; npx playwright test
-# Alternatively, use the npm script if cross-env is installed
-npm run test:prod
+
+NODE_ENV=prod npx playwright test            # Linux / macOS 
+
+set NODE_ENV=prod && npx playwright test      # Windows CMD
+
+$env:NODE_ENV = "prod"; npx playwright test   # Windows PowerShell
+
+npm run test:prod                             # Alternatively, use the npm script if cross-env is installed
 ```
 
 ## Environment Variables
@@ -38,7 +38,6 @@ npm run test:prod
 - `SF_PROD_PASSWORD` - Prod Salesforce password
 
 ## Example Usage
-
 ```bash
 # Run stage tests with custom credentials
 NODE_ENV=stage SF_STAGE_USERNAME="stage.user@company.com" SF_STAGE_PASSWORD="mypassword" npx playwright test
@@ -53,10 +52,9 @@ The `config.js` file now supports multiple environments with fallback defaults:
 
 ```javascript
 const environments = {
-    dev: { username: 'jk885827@resourceful-impala-ehughf.com', password: 'Test@12345678', ... },
-  stage: { username: 'jitender.kumar@mindruby.com', password: 'Test@12345678', ... }
+     dev: { username: 'jk885827@resourceful-impala-ehughf.com', password: 'Test@12345678', ... },
+    stage: { username: 'jitender.kumar@mindruby.com', password: 'Test@12345678', ... }
   //prod: { username: 'prod.user@mindruby.com', password: 'ProdPass@123', ... }
 };
 ```
-
 Each environment can have its own URL, credentials, and settings.
