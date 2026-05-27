@@ -76,8 +76,4 @@ test.describe.serial('Login to Salesforce', () => {
             testData.opportunity.stage
           );
       });
-
-
-
-      
 });
