@@ -1,6 +1,6 @@
-<testsuites id="" name="" tests="4" failures="0" skipped="0" errors="0" time="66.46694299999997">
-<testsuite name="TC_Login.spec.js" timestamp="2026-05-27T11:04:38.001Z" hostname="chrome" tests="4" failures="0" skipped="0" time="32.405" errors="0">
-<testcase name="Login to Salesforce › Step 1 - create new account via Standard Process" classname="TC_Login.spec.js" time="3.562">
+<testsuites id="" name="" tests="4" failures="0" skipped="0" errors="0" time="66.82466400000081">
+<testsuite name="TC_Login.spec.js" timestamp="2026-05-27T12:29:52.691Z" hostname="chrome" tests="4" failures="0" skipped="0" time="32.457" errors="0">
+<testcase name="Login to Salesforce › Step 1 - create new account via Standard Process" classname="TC_Login.spec.js" time="3.681">
 <system-out>
 <![CDATA[ Starting Salesforce Login (Hybrid Mode)...
 Entered value: jk885827@resourceful-impala-ehughf.com
@@ -11,17 +11,15 @@ Still waiting for approval. 30s remaining...
 Login successful: https://resourceful-impala-ehughf-dev-ed.trailblaze.lightning.force.com/lightning/page/home
  Login successfully.
 Account Data Generated
-Entered value: Account_Felicia_63966
+Entered value: Account_Marty_40782
 ]]>
 </system-out>
 </testcase>
-<testcase name="Login to Salesforce › Step 2 - create new opportunity via Standard Process" classname="TC_Login.spec.js" time="9.37">
+<testcase name="Login to Salesforce › Step 2 - create new opportunity via Standard Process" classname="TC_Login.spec.js" time="9.265">
 <system-out>
 <![CDATA[Opportunity Data Generated
-Entered value: Opportunity_Casandra_96432
-Available dropdown options:
- 1. Account_Felicia_63966
-Match found: "Account_Felicia_63966" → Clicking
+Entered value: Opportunity_Wendell_72712
+Entered value: Account_Marty_40782
 Entered value: 16/06/2026
 Clicked dropdown: button[aria-label='Stage']
 Total options found: 11
@@ -31,10 +29,10 @@ Selected: Prospecting
 ]]>
 </system-out>
 </testcase>
-<testcase name="Login to Salesforce › Step 3 - create Opportunity via Account related tab" classname="TC_Login.spec.js" time="10.836">
+<testcase name="Login to Salesforce › Step 3 - create Opportunity via Account related tab" classname="TC_Login.spec.js" time="11.802">
 <system-out>
-<![CDATA[Entered value: Account_Felicia_63966
-Entered value: Opportunity_Casandra_96432
+<![CDATA[Entered value: Account_Marty_40782
+Entered value: Opportunity_Wendell_72712
 Entered value: 16/06/2026
 Clicked dropdown: button[aria-label='Stage']
 Total options found: 11
@@ -44,12 +42,12 @@ Selected: Prospecting
 ]]>
 </system-out>
 </testcase>
-<testcase name="Login to Salesforce › Step 4 - create Account Created Via Opportunity" classname="TC_Login.spec.js" time="8.637">
+<testcase name="Login to Salesforce › Step 4 - create Account Created Via Opportunity" classname="TC_Login.spec.js" time="7.709">
 <system-out>
 <![CDATA[Account Data Generated
 Opportunity Data Generated
-Entered value: Opportunity_Rosemarie_90582
-Entered value: Account_Bettye_15535
+Entered value: Opportunity_Christina_4348
+Entered value: Account_Walter_81757
 Entered value: 16/06/2026
 Clicked dropdown: button[aria-label='Stage']
 Total options found: 11

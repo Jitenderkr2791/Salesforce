@@ -4,7 +4,7 @@ const opportunityPageLocators =
         opportunityNewButton: "div[title='New']",
         opportunityNameInput: "//input[@name='Name' and @type='text']",
         accountNameInput: "input[role='combobox'][aria-label='Account Name']",
-        accountDropdownOptions: "lightning-base-combobox-formatted-text",
+        accountDropdownOptions: "(//lightning-base-combobox-item)[2]",
         closeDateInput: "input[name='CloseDate']",
         stageDropdown: "button[aria-label='Stage']",
         stageOption: "lightning-base-combobox-item[role='option']",
@@ -13,7 +13,6 @@ const opportunityPageLocators =
 
 
         searchAccountInput:"//input[@name='Account-search-input']",
-        //accountSearchIcon :"svg.slds-input__icon_left",
         accountLink: (accountName) => `//a[@title='${accountName}']`,
         accountRelatableTab: "//a[@data-tab-value='relatedListsTab']",
         accountOpportunityNewTab:"//button[@name='New']",

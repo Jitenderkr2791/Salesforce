@@ -29,7 +29,9 @@ export default class OpportunityPageMethods extends BasePage
 
     async enterAccountName(accountName)
     {
-    await BasePage.enterTextAndSelectValueFromDropdown(this.page,opportunityPageLocators.accountNameInput,String(accountName),opportunityPageLocators.accountDropdownOptions)  
+      await this.waitAndType(opportunityPageLocators.accountNameInput,String(accountName));
+      const accountOption = this.page.locator(opportunityPageLocators.accountDropdownOptions);
+      await accountOption.first().click();
     }
 
     async enterCloseDate(closeDate)
