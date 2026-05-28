@@ -35,7 +35,7 @@ export default defineConfig({
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
     slowMo: 100,                   // Slow down actions by 100ms to better observe test execution
-    screenshotOn: 'failure',      // Capture screenshots only on test failures
+    screenshot: 'only-on-failure',      // Capture screenshots only on test failures
     video: 'retain-on-failure',  // Record video only for failed tests},
   },
 
@@ -84,4 +84,3 @@ export default defineConfig({
   //   reuseExistingServer: !process.env.CI,
   // },
 });
-
