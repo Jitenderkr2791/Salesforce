@@ -3,11 +3,12 @@ import { salesforceUrl } from '../config.js';
 import LoginPageMethods from '../pages/login.page.js';
 import AccountPageMethods from '../pages/account.page.js';
 import OpportunityPageMethods from '../pages/opportunity.page.js';
+import ContactPageMethods from '../pages/contact.page.js';
 import { generateAccountData, generateOpportunityData, getTestData } from '../test-data/testDataGenerator.js';
 
 test.describe.serial('Login to Salesforce', () => {
   let page, context;
-  let login, opportunity;
+  let login, opportunity, contact;
   let testData;
   let account ;
  
@@ -59,4 +60,11 @@ test.describe.serial('Login to Salesforce', () => {
           account = new AccountPageMethods(page); 
           await account.createAccountViaOpportunityCreation(testData);
       });
+    
+    test('Step 5 - create Contact via Standard Process', async () =>
+       {    
+            const testData = getTestData();
+            contact = new ContactPageMethods(page);
+            await contact.createNewContact(testData);
+       });
 });
