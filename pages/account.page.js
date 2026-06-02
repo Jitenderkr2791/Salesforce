@@ -31,20 +31,14 @@ export default class AccountPageMethods extends BasePage
         await this.waitAndClick(accountPageLocators.saveButton);
     }
 
-/*
-    async verifyAccountCreation()
-    {
-        const successMessageLocator = `//span[contains(text(),'${testData.accountName} was created.')]`;
-        await this.page.waitForSelector(successMessageLocator, { timeout: 10000 });
-    } */
-
     async createNewAccount(testData)
     {   
         await this.navigateToAccountsTab();
         await this.clickNewButton();
-        await this.enterAccountName(testData.accountName);
+        await this.enterAccountName(testData.account.accountName);
         await this.clickSaveButton();
-       // await this.verifyAccountCreation();
+        await this.verifyToastMessage("Account", testData.account.accountName);
+        await this.closeToastMessage();
     }   
 
 
@@ -63,19 +57,23 @@ export default class AccountPageMethods extends BasePage
         await this.waitAndClick(accountPageLocators.OppoPageNewAccountSaveButton);
     }
     
-    async createAccountViaOpportunityCreation(opportunityName, accountName, closeDate, stage)
+    async createAccountViaOpportunityCreation(testData)
     {
         const opportunity = new OpportunityPageMethods(this.page);
         await opportunity.navigateToOpportunityTab();
         await opportunity.OpportunityNewButton();
-        await opportunity.enterOpportunityName(opportunityName);
+        await opportunity.enterOpportunityName(testData.opportunity.opportunityName);
         await this.waitAndClick(opportunityPageLocators.accountNameInput);
         await this.clickOppoPagenewAccount();
-        await this.enterOppoPageNewAccountInput(accountName);
+        await this.enterOppoPageNewAccountInput(testData.account.accountName);
         await this.clickOppoPageNewAccountSaveButton();
-        await opportunity.enterCloseDate(closeDate);
-        await opportunity.selectStage(stage)
+        await this.verifyToastMessage("Account", testData.account.accountName);
+        await this.closeToastMessage();
+        await opportunity.enterCloseDate(testData.opportunity.closeDate);
+        await opportunity.selectStage(testData.opportunity.stage);
         await opportunity.clickSaveButton();
+        await this.verifyToastMessage("Opportunity", testData.opportunity.opportunityName);
+        await this.closeToastMessage();
     }
     
 }

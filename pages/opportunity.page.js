@@ -49,15 +49,17 @@ export default class OpportunityPageMethods extends BasePage
       await this.waitAndClick(opportunityPageLocators.saveButton);
     }
 
-    async createNewOpportunity(opportunityName, accountName, closeDate, stage)
+    async createNewOpportunity(testData)
     {
       await this.navigateToOpportunityTab();
       await this.OpportunityNewButton();
-      await this.enterOpportunityName(opportunityName);
-      await this.enterAccountName(accountName);
-      await this.enterCloseDate(closeDate);
-      await this.selectStage(stage);
+      await this.enterOpportunityName(testData.opportunity.opportunityName);
+      await this.enterAccountName(testData.account.accountName);
+      await this.enterCloseDate(testData.opportunity.closeDate);
+      await this.selectStage(testData.opportunity.stage);
       await this.clickSaveButton();
+      await this.verifyToastMessage("Opportunity", testData.opportunity.opportunityName);
+      await this.closeToastMessage();
     }
 
     async clickRelatedTab()
@@ -70,17 +72,19 @@ export default class OpportunityPageMethods extends BasePage
         await this.waitAndClick(opportunityPageLocators.accountOpportunityNewTab);
     }
     
-    async createNewOpportunityViaAccountRelatedTab(accountName,opportunityName,closeDate,stage)
+    async createNewOpportunityViaAccountRelatedTab(testData)
     {
         await this.waitAndClick(accountPageLocators.accountsHomeTab);
-        await this.waitAndType(opportunityPageLocators.searchAccountInput, String(accountName));
+        await this.waitAndType(opportunityPageLocators.searchAccountInput, String(testData.account.accountName));
         await this.page.keyboard.press('Enter');
-        await this.waitAndClick(opportunityPageLocators.accountLink(accountName));
+        await this.waitAndClick(opportunityPageLocators.accountLink(testData.account.accountName));
         await this.clickRelatedTab();
         await this.clickRelatedTabNewOpportunityButton();
-        await this.enterOpportunityName(opportunityName);
-        await this.enterCloseDate(closeDate);
-        await this.selectStage(stage);
+        await this.enterOpportunityName(testData.opportunity.opportunityName);
+        await this.enterCloseDate(testData.opportunity.closeDate);
+        await this.selectStage(testData.opportunity.stage);
         await this.clickSaveButton();
+        await this.verifyToastMessage("Opportunity", testData.opportunity.opportunityName);
+        await this.closeToastMessage();
     }
 }

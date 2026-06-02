@@ -1,4 +1,5 @@
 import { expect } from '@playwright/test';
+import commonLocators from '../pageobjects/commonLocators';
 
 class BasePage 
 {
@@ -237,6 +238,39 @@ class BasePage
         await this.page.screenshot({ path: name, fullPage: true });
         console.log(`📸 Screenshot saved as: ${name}`);
     }
+
+    async verifyToastMessage(entityName, recordName)
+     {
+            const toastLocator = await this.page.locator(commonLocators.toastMessage);
+            await toastLocator.waitFor({ state: 'visible' });
+            const actualMessage = await toastLocator.textContent();
+            const trimmedMessage = actualMessage.trim();
+            console.log(" Actual Toast Message:", trimmedMessage);
+            const regex = new RegExp(`${entityName}\\s+"${recordName}"\\s+was created\\.?`);
+                if (!regex.test(trimmedMessage))
+                {
+                    throw new Error(` Toast message mismatch! Expected pattern: ${entityName} "${recordName}" was created  Actual: ${trimmedMessage}`);
+                }
+                console.log(" Toast verified:", trimmedMessage);
+     }
+    
+    async closeToastMessage()
+        {
+            console.log(" Closing toast message...");
+            const toast = this.page.locator(commonLocators.toastMessage);
+            const closeBtn = this.page.locator(commonLocators.toastCloseButton);
+            if (await closeBtn.isVisible())
+            {
+                await closeBtn.click();
+                console.log(" Close button clicked");
+                await expect(toast).toBeHidden({ timeout: 10000 });       // Wait until toast disappears (max 10 sec)
+                console.log(" Toast closed successfully");
+            }
+            else
+            {
+                console.log(" Toast close button not visible");
+            }
+        }
 }
 
 export default BasePage;

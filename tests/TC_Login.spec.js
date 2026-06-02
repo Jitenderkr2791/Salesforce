@@ -33,7 +33,7 @@ test.describe.serial('Login to Salesforce', () => {
             generateAccountData(); 
             const testData = getTestData();
             account = new AccountPageMethods(page);                      
-            await account.createNewAccount(testData.account);
+            await account.createNewAccount(testData);
          });
 
     test('Step 2 - create new opportunity via Standard Process', async () => 
@@ -41,26 +41,14 @@ test.describe.serial('Login to Salesforce', () => {
             generateOpportunityData(); 
             const testData = getTestData();                      // Read latest data
             opportunity = new OpportunityPageMethods(page);    
-            await opportunity.createNewOpportunity
-            (
-              testData.opportunity.opportunityName, 
-              testData.opportunity.accountName, 
-              testData.opportunity.closeDate, 
-              testData.opportunity.stage
-            );
+            await opportunity.createNewOpportunity(testData);
        });
 
        test('Step 3 - create Opportunity via Account related tab', async () => 
        {    
             const testData = getTestData();
             opportunity = new OpportunityPageMethods(page);
-            await opportunity.createNewOpportunityViaAccountRelatedTab
-            (
-              testData.account.accountName, 
-              testData.opportunity.opportunityName, 
-              testData.opportunity.closeDate, 
-              testData.opportunity.stage
-            );    
+            await opportunity.createNewOpportunityViaAccountRelatedTab(testData);    
        });   
 
        test('Step 4 - create Account Created Via Opportunity', async () =>
@@ -69,12 +57,6 @@ test.describe.serial('Login to Salesforce', () => {
           generateOpportunityData();
           const testData = getTestData();
           account = new AccountPageMethods(page); 
-          await account.createAccountViaOpportunityCreation
-          (
-            testData.opportunity.opportunityName,
-            testData.account.accountName,
-            testData.opportunity.closeDate, 
-            testData.opportunity.stage
-          );
+          await account.createAccountViaOpportunityCreation(testData);
       });
 });
