@@ -7,67 +7,83 @@ on:
     branches: [ main, master ]
 jobs:
   test:
-    timeout-minutes: 120
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v4
-    - uses: actions/setup-node@v4
-      with:
-        node-version: lts/*
-    - name: Install dependencies
-      run: npm ci
+   timeout-minutes: 120
+   runs-on: ubuntu-latest
+   steps: 
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+            node-version: 'lts/*'
+          
+      - name: Install dependencies
+        run:  npm ci
 
   # ✅ Cache Playwright browsers (VERY IMPORTANT ) 
-    - name: Cache Playwright Browsers 
-      uses: actions/cache@v4 
-      with: 
-        path: ~/.cache/ms-playwright 
-        key: ${{ runner.os }}-playwright-${{ hashFiles('**/package-lock.json') }} 
+      - name: Cache Playwright Browsers 
+        uses: actions/cache@v4 
+        with: 
+          path: ~/.cache/ms-playwright 
+          key: ${{ runner.os }}-playwright-${{ hashFiles('**/package-lock.json') }} 
       
-  # ✅ Install ONLY Chromium (faster) - name: Install Playwright Browsers run: npx playwright install chromium
+    # ✅ Install ONLY Chromium (faster) - name: Install Playwright Browsers run: npx playwright install chromium
 
-  # ✅ Install only if not cached
-    - name: Install Playwright Browsers
-      run: npx playwright install --with-deps
+    # ✅ Install only if not cached
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
 
-    - name: Run Playwright tests
-      run: npx playwright test
+     # ✅ Run tests in parallel
+      - name: Run Playwright tests
+        run: npx playwright test --workers=4
 
-      # ✅ Install Allure CLI - 
-    - name: Install Allure 
-      run: npm install -g allure-commandline --save-dev
-        
-      # ✅ Generate Allure Report - 
-    - name: Generate Allure Report 
-      run: allure generate allure-results --clean -o allure-report 
+        # ✅ Install Allure CLI -  # ✅ Always run below steps even if tests fail 
+      - name: Install Allure 
+        if: always()
+        run: npm install -g allure-commandline --save-dev
+          
+        # ✅ Generate Allure Report - 
+      - name: Generate Allure Report 
+        if: always()
+        run: allure generate allure-results --clean -o allure-report 
 
-      # ✅ Deploy to GitHub Pages 
-    - name: Deploy to GitHub Pages 
-      uses: peaceiris/actions-gh-pages@v3 
-      with: 
-        github_token: ${{ secrets.GITHUB_TOKEN }} 
-        publish_dir: ./allure-report
-        
-      # ✅ Zip the report -  - name: Zip Allure Report  run: zip -r allure-report.zip allure-report
+        # ✅ Deploy to GitHub Pages 
+      - name: Deploy to GitHub Pages 
+        uses: peaceiris/actions-gh-pages@v3 
+        with: 
+          github_token: ${{ secrets.GITHUB_TOKEN }} 
+          publish_dir: ./allure-report
+          
+        # ✅ Zip the report -  - name: Zip Allure Report  run: zip -r allure-report.zip allure-report
 
-  # ✅ Upload Playwright HTML report (optional backup)
-    - uses: actions/upload-artifact@v4
-      if: ${{ !cancelled() }}
-      with:
-        name: playwright-report
-        path: playwright-report/
-        retention-days: 30
-  
-  # ✅ Send Email with Report - 
-    - name: Send Email 
-      uses: dawidd6/action-send-mail@v3 
-      with: 
-        server_address: smtp.gmail.com 
-        server_port: 465 
-        username: ${{ secrets.EMAIL_USERNAME }} 
-        password: ${{ secrets.EMAIL_PASSWORD }} 
-        subject: "Playwright Test Report" 
-        body: "View Allure Report: https://YOUR_USERNAME.github.io/YOUR_REPO_NAME/" 
-        to: jitenk169@gmail.com 
-        from: ${{ secrets.EMAIL_USERNAME }}
-       # attachments: allure-report.zip
+    # ✅ Upload Playwright HTML report (optional backup)
+      - uses: actions/upload-artifact@v4
+        if: ${{ !cancelled() }}
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 30
+
+    # ✅ Upload Allure report as artifact
+      - name: Upload Allure Report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: allure-report
+          path: allure-report/
+          retention-days: 30
+    
+    # ✅ Send Email with Report - 
+      - name: Send Email 
+        uses: dawidd6/action-send-mail@v3 
+        with: 
+          server_address: smtp.gmail.com 
+          server_port: 465 
+          username: ${{ secrets.EMAIL_USERNAME }} 
+          password: ${{ secrets.EMAIL_PASSWORD }} 
+          subject: "Playwright Test Report" 
+          body: "View Allure Report: https://YOUR_USERNAME.github.io/YOUR_REPO_NAME/" 
+          to: jitenk169@gmail.com 
+          from: ${{ secrets.EMAIL_USERNAME }}
+        # attachments: allure-report.zip
