@@ -10,15 +10,16 @@ test.describe.serial('Login to Salesforce', () => {
   let login, opportunity;
   let testData;
   let account ;
-  test.setTimeout(60000);
+ 
   
     test.beforeAll(async ({ browser }) => 
-      {     
-        context = await browser.newContext();
+      { test.setTimeout(120000);
+        context = await browser.newContext({viewport: null});
         page = await context.newPage();
         login = new LoginPageMethods(page);
         await page.goto(salesforceUrl);
-        await login.loginSmartHybrid({maxOtpAttempts: 3, authTimeout: 30000});
+        await login.loginSmartHybrid({maxOtpAttempts: 3, authTimeout: 60000});
+         await page.evaluate(() => {document.body.style.zoom = '80%';});
         console.log(' Login successfully.');
       });
 

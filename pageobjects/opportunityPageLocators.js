@@ -14,7 +14,7 @@ const opportunityPageLocators =
 
         searchAccountInput:"//input[@name='Account-search-input']",
         accountLink: (accountName) => `//a[@title='${accountName}']`,
-        accountRelatableTab: "//a[@data-tab-value='relatedListsTab']",
-        accountOpportunityNewTab:"//button[@name='New']",
+        accountRelatableTab: "//li[@data-target-selection-name='relatedListsTabTab']",
+        accountOpportunityNewTab:"//li[@data-target-selection-name='sfdc:StandardButton.Opportunity.New']",
 }
 export default opportunityPageLocators
