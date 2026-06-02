@@ -1,51 +1,6 @@
-<testsuites id="" name="" tests="1" failures="0" skipped="0" errors="1" time="34.817888000000266">
-<testsuite name="TC_Login.spec.js" timestamp="2026-06-02T12:05:25.103Z" hostname="chrome" tests="1" failures="0" skipped="0" time="0.941" errors="1">
-<testcase name="Login to Salesforce › Step 5 - create Contact via Standard Process" classname="TC_Login.spec.js" time="0.941">
-<system-out>
-<![CDATA[ Starting Salesforce Login (Hybrid Mode)...
-Entered value: jk885827@resourceful-impala-ehughf.com
-Entered value: Test@12345678
-Authenticator page detected. Waiting for mobile device approval...
-Still waiting for approval. 60s remaining...
-Still waiting for approval. 50s remaining...
-Login successful: https://resourceful-impala-ehughf-dev-ed.trailblaze.lightning.force.com/lightning/page/home
- Login successfully.
-
-[[ATTACHMENT|test-results\TC_Login-Login-to-Salesfor-f23ae-ontact-via-Standard-Process-chrome\test-failed-1.png]]
-
-[[ATTACHMENT|test-results\TC_Login-Login-to-Salesfor-f23ae-ontact-via-Standard-Process-chrome\error-context.md]]
-
-[[ATTACHMENT|test-results\TC_Login-Login-to-Salesfor-f23ae-ontact-via-Standard-Process-chrome\error-context.md]]
-]]>
-</system-out>
-<error message="locator.waitFor: selector: expected string, got undefined" type="Error">
-<![CDATA[  [chrome] › TC_Login.spec.js:64:5 › Login to Salesforce › Step 5 - create Contact via Standard Process 
-
-    Error: locator.waitFor: selector: expected string, got undefined
-
-       at ..\pages\base.page.js:53
-
-      51 |         await this.waitForPageStable();
-      52 |         const element = this.page.locator(selector);
-    > 53 |         await element.waitFor({ state: 'visible', timeout: 15000 });
-         |                       ^
-      54 |         await element.click();
-      55 |     }
-      56 |
-        at ContactPageMethods.waitAndClick (C:\Users\MindRuby\Downloads\Salesforce\pages\base.page.js:53:23)
-        at ContactPageMethods.navigateToContactsTab (C:\Users\MindRuby\Downloads\Salesforce\pages\contact.page.js:8:9)
-        at ContactPageMethods.createNewContact (C:\Users\MindRuby\Downloads\Salesforce\pages\contact.page.js:24:9)
-        at C:\Users\MindRuby\Downloads\Salesforce\tests\TC_Login.spec.js:68:13
-
-    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
-    ..\test-results\TC_Login-Login-to-Salesfor-f23ae-ontact-via-Standard-Process-chrome\test-failed-1.png
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    Error Context: ..\test-results\TC_Login-Login-to-Salesfor-f23ae-ontact-via-Standard-Process-chrome\error-context.md
-
-    Error Context: ..\test-results\TC_Login-Login-to-Salesfor-f23ae-ontact-via-Standard-Process-chrome\error-context.md
-]]>
-</error>
+<testsuites id="" name="" tests="1" failures="0" skipped="0" errors="0" time="6.2220460000000894">
+<testsuite name="test-1.spec.ts" timestamp="2026-06-02T12:38:35.600Z" hostname="chrome" tests="1" failures="0" skipped="0" time="1.477" errors="0">
+<testcase name="test" classname="test-1.spec.ts" time="1.477">
 </testcase>
 </testsuite>
 </testsuites>
