@@ -2,24 +2,13 @@
 import BasePage from './base.page.js';
 import opportunityPageLocators from '../pageobjects/opportunityPageLocators.js';
 import accountPageLocators from '../pageobjects/accountPageLocators.js';
+import commonLocators from '../pageobjects/commonLocators.js';
 
 export default class OpportunityPageMethods extends BasePage
 {
-    constructor(page)
-    {
-      super(page);
-      this.page = page;
-    }
-
     async navigateToOpportunityTab()
     {
       await this.waitAndClick(opportunityPageLocators.opportunitiesHomeTab);
-    }
-
-    async OpportunityNewButton()
-    {
-      await this.waitAndClick(opportunityPageLocators.opportunityNewButton);      // WAIT for modal/input to appear
-      await this.page.locator(opportunityPageLocators.opportunityNameInput).waitFor({ state: 'visible', timeout: 30000 });
     }
 
     async enterOpportunityName(opportunityName)
@@ -52,7 +41,7 @@ export default class OpportunityPageMethods extends BasePage
     async createNewOpportunity(testData)
     {
       await this.navigateToOpportunityTab();
-      await this.OpportunityNewButton();
+      await this.clickNewButton();
       await this.enterOpportunityName(testData.opportunity.opportunityName);
       await this.enterAccountName(testData.account.accountName);
       await this.enterCloseDate(testData.opportunity.closeDate);

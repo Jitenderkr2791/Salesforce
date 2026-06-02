@@ -44,14 +44,14 @@ test.describe.serial('Login to Salesforce', () => {
             await opportunity.createNewOpportunity(testData);
        });
 
-       test('Step 3 - create Opportunity via Account related tab', async () => 
+    test('Step 3 - create Opportunity via Account related tab', async () => 
        {    
             const testData = getTestData();
             opportunity = new OpportunityPageMethods(page);
             await opportunity.createNewOpportunityViaAccountRelatedTab(testData);    
        });   
 
-       test('Step 4 - create Account Created Via Opportunity', async () =>
+    test('Step 4 - create Account Created Via Opportunity', async () =>
        {
           generateAccountData(); 
           generateOpportunityData();

@@ -5,16 +5,12 @@ import { salesforceUsername, salesforcePassword } from '../config.js';
 
 export default class LoginPageMethods extends BasePage
 {
-  constructor(page)
-  {
-    super(page);
-    this.page = page;
-    this.homeUrlPattern =/lightning\/page\/home/; // Salesforce Home URL Pattern
-    this.errorLocator = this.page.locator(loginPageLocators.errorLocator);
-    this.otpLocator = this.page.locator(loginPageLocators.otpInput).first();
-    this.authenticatorPageHeading = this.page.locator(loginPageLocators.authenticatorPageHeading);
-    this.otpPageHeading = this.page.locator(loginPageLocators.otpPageHeading);
-  }
+  
+    homeUrlPattern =/lightning\/page\/home/; // Salesforce Home URL Pattern
+    errorLocator = this.page.locator(loginPageLocators.errorLocator);
+    otpLocator = this.page.locator(loginPageLocators.otpInput).first();
+    authenticatorPageHeading = this.page.locator(loginPageLocators.authenticatorPageHeading);
+    otpPageHeading = this.page.locator(loginPageLocators.otpPageHeading);
 
   // Enter Username & Password
   async enterCredentials()

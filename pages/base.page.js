@@ -3,8 +3,9 @@ import commonLocators from '../pageobjects/commonLocators';
 
 class BasePage 
 {
-    constructor(page) {
-        this.page = page;
+    constructor(page)
+    {
+      this.page = page;
     }
 
     /** ---------- Navigation ---------- **/
@@ -271,6 +272,13 @@ class BasePage
                 console.log(" Toast close button not visible");
             }
         }
+    async clickNewButton()  
+    {
+      await this.waitAndClick(commonLocators.newButton);
+    }
+    
+    
+
 }
 
 export default BasePage;

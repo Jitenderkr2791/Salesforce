@@ -1,24 +1,14 @@
 import BasePage from './base.page.js';
+import commonLocators from '../pageobjects/commonLocators.js';
 import accountPageLocators from '../pageobjects/accountPageLocators.js';
 import opportunityPageLocators from '../pageobjects/opportunityPageLocators.js';
 import OpportunityPageMethods from './opportunity.page.js';
 
 export default class AccountPageMethods extends BasePage
 {  
-    constructor(page)
-    {
-        super(page); 
-        this.page = page;
-    }
-
     async navigateToAccountsTab()
     {
         await this.waitAndClick(accountPageLocators.accountsHomeTab);
-    }
-
-    async clickNewButton()  
-    {
-        await this.waitAndClick(accountPageLocators.accountNewButton);
     }
 
     async enterAccountName(accountName)
@@ -41,7 +31,6 @@ export default class AccountPageMethods extends BasePage
         await this.closeToastMessage();
     }   
 
-
     async clickOppoPagenewAccount()
     {
         await this.waitAndClick(accountPageLocators.OppoPagenewAccount);
@@ -61,7 +50,7 @@ export default class AccountPageMethods extends BasePage
     {
         const opportunity = new OpportunityPageMethods(this.page);
         await opportunity.navigateToOpportunityTab();
-        await opportunity.OpportunityNewButton();
+        await this.clickNewButton();
         await opportunity.enterOpportunityName(testData.opportunity.opportunityName);
         await this.waitAndClick(opportunityPageLocators.accountNameInput);
         await this.clickOppoPagenewAccount();

@@ -1,7 +1,6 @@
 const opportunityPageLocators =
 { 
         opportunitiesHomeTab: "a[title='Opportunities']",
-        opportunityNewButton: "div[title='New']",
         opportunityNameInput: "//input[@name='Name' and @type='text']",
         accountNameInput: "input[role='combobox'][aria-label='Account Name']",
         accountDropdownOptions: "(//lightning-base-combobox-item)[2]",

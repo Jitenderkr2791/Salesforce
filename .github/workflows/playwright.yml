@@ -7,7 +7,7 @@ on:
     branches: [ main, master ]
 jobs:
   test:
-   timeout-minutes: 120
+   timeout-minutes: 30
    runs-on: ubuntu-latest
    env:
         FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
