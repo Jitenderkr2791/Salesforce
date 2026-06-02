@@ -19,7 +19,7 @@ test.describe.serial('Login to Salesforce', () => {
         login = new LoginPageMethods(page);
         await page.goto(salesforceUrl);
         await login.loginSmartHybrid({maxOtpAttempts: 3, authTimeout: 60000});
-         await page.evaluate(() => {document.body.style.zoom = '80%';});
+        await page.evaluate(() => {document.body.style.zoom = '100%';});
         console.log(' Login successfully.');
       });
 

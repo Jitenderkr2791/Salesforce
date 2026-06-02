@@ -1,70 +1,71 @@
-<testsuites id="" name="" tests="4" failures="0" skipped="0" errors="0" time="73.06453200000152">
-<testsuite name="TC_Login.spec.js" timestamp="2026-06-02T09:23:22.992Z" hostname="chrome" tests="4" failures="0" skipped="0" time="38.088" errors="0">
-<testcase name="Login to Salesforce › Step 1 - create new account via Standard Process" classname="TC_Login.spec.js" time="6.619">
+<testsuites id="" name="" tests="4" failures="0" skipped="0" errors="0" time="79.204304">
+<testsuite name="TC_Login.spec.js" timestamp="2026-06-02T10:05:10.306Z" hostname="chrome" tests="4" failures="0" skipped="0" time="33.142" errors="0">
+<testcase name="Login to Salesforce › Step 1 - create new account via Standard Process" classname="TC_Login.spec.js" time="6.234">
 <system-out>
 <![CDATA[ Starting Salesforce Login (Hybrid Mode)...
-Entered value: jk885827@resourceful-impala-ehughf.com
+Entered value: jitender.kumar@mindruby.com
 Entered value: Test@12345678
-Authenticator page detected. Waiting for mobile device approval...
-Still waiting for approval. 60s remaining...
- Waiting for auth page...
-Login successful: https://resourceful-impala-ehughf-dev-ed.trailblaze.lightning.force.com/lightning/page/home
+OTP page detected. Starting OTP flow...
+ Starting OTP Flow...
+ OTP Attempt #1
+ OTP Entered: 216358
+Login successful: https://mindrubytechnologies-6a-dev-ed.develop.lightning.force.com/lightning/page/home
  Login successfully.
 Account Data Generated
-Entered value: Account_Marina_23081
- Actual Toast Message: Account "Account_Marina_23081" was created.
- Toast verified: Account "Account_Marina_23081" was created.
+Entered value: Account_Wilma_76875
+ Actual Toast Message: Account "Account_Wilma_76875" was created.
+ Toast verified: Account "Account_Wilma_76875" was created.
  Closing toast message...
  Close button clicked
  Toast closed successfully
 ]]>
 </system-out>
 </testcase>
-<testcase name="Login to Salesforce › Step 2 - create new opportunity via Standard Process" classname="TC_Login.spec.js" time="9.918">
+<testcase name="Login to Salesforce › Step 2 - create new opportunity via Standard Process" classname="TC_Login.spec.js" time="8.925">
 <system-out>
 <![CDATA[Opportunity Data Generated
-Entered value: Opportunity_Mack_62046
-Entered value: Account_Marina_23081
+Entered value: Opportunity_Hertha_19479
+Entered value: Account_Wilma_76875
 Entered value: 16/06/2026
 Clicked dropdown: button[aria-label='Stage']
 Total options found: 11
 Option 1: --None--
 Option 2: Prospecting
 Selected: Prospecting
- Actual Toast Message: Opportunity "Opportunity_Mack_62046" was created.
- Toast verified: Opportunity "Opportunity_Mack_62046" was created.
+ Actual Toast Message: Opportunity "Opportunity_Hertha_19479" was created.
+ Toast verified: Opportunity "Opportunity_Hertha_19479" was created.
  Closing toast message...
  Close button clicked
  Toast closed successfully
 ]]>
 </system-out>
 </testcase>
-<testcase name="Login to Salesforce › Step 3 - create Opportunity via Account related tab" classname="TC_Login.spec.js" time="9.363">
+<testcase name="Login to Salesforce › Step 3 - create Opportunity via Account related tab" classname="TC_Login.spec.js" time="8.303">
 <system-out>
-<![CDATA[Entered value: Account_Marina_23081
-Entered value: Opportunity_Mack_62046
+<![CDATA[Entered value: Account_Wilma_76875
+Entered value: Opportunity_Hertha_19479
 Entered value: 16/06/2026
 Clicked dropdown: button[aria-label='Stage']
 Total options found: 11
 Option 1: --None--
 Option 2: Prospecting
 Selected: Prospecting
- Actual Toast Message: Opportunity "Opportunity_Mack_62046" was created.
- Toast verified: Opportunity "Opportunity_Mack_62046" was created.
+ Actual Toast Message: Opportunity "Opportunity_Hertha_19479" was created.
+ Toast verified: Opportunity "Opportunity_Hertha_19479" was created.
  Closing toast message...
  Close button clicked
  Toast closed successfully
 ]]>
 </system-out>
 </testcase>
-<testcase name="Login to Salesforce › Step 4 - create Account Created Via Opportunity" classname="TC_Login.spec.js" time="12.188">
+<testcase name="Login to Salesforce › Step 4 - create Account Created Via Opportunity" classname="TC_Login.spec.js" time="9.68">
 <system-out>
 <![CDATA[Account Data Generated
 Opportunity Data Generated
-Entered value: Opportunity_Mandy_72472
-Entered value: Account_Leroy_66251
- Actual Toast Message: Account "Account_Leroy_66251" was created.
- Toast verified: Account "Account_Leroy_66251" was created.
+Entered value: Opportunity_Penny_43861
+Entered value: Account_Jesse_74722
+ Actual Toast Message: Account "Account_Jesse_74722" was created.
+ Toast verified: Account "Account_Jesse_74722" was created.
  Closing toast message...
  Close button clicked
  Toast closed successfully
@@ -74,8 +75,8 @@ Total options found: 11
 Option 1: --None--
 Option 2: Prospecting
 Selected: Prospecting
- Actual Toast Message: Opportunity "Opportunity_Mandy_72472" was created.
- Toast verified: Opportunity "Opportunity_Mandy_72472" was created.
+ Actual Toast Message: Opportunity "Opportunity_Penny_43861" was created.
+ Toast verified: Opportunity "Opportunity_Penny_43861" was created.
  Closing toast message...
  Close button clicked
  Toast closed successfully
