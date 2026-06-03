@@ -51,7 +51,7 @@ class BasePage
         {
         const element = this.page.locator(selector);
         await this.page.waitForLoadState('domcontentloaded');
-        await element.waitFor({ state: 'attached', timeout: 30000 });
+      //  await element.waitFor({ state: 'attached', timeout: 30000 });
         await expect(element).toBeEnabled({ timeout: 30000 });
         await element.click();
         }
@@ -278,9 +278,53 @@ class BasePage
     {
       await this.waitAndClick(commonLocators.newButton);
     }
-    
-    
 
+    async navigateToTab(tabName) 
+            {
+                const page = this.page;
+                const navLinks = page.locator('nav[aria-label="Global"] a');
+                const count = await navLinks.count();
+                for (let i = 0; i < count; i++) 
+                {
+                  const text = (await navLinks.nth(i).innerText()).trim().toLowerCase();
+                  console.log(`Nav Item ${i + 1}: ${text}`);
+                  if (text === tabName.toLowerCase())   
+                    {
+                        console.log(`✅ Found ${tabName} → Clicking`);
+                        await navLinks.nth(i).click();
+                        return;
+                        }
+                    }
+                console.log(` ${tabName} not visible. Checking inside 'More' menu`);
+                const moreBtn = page.getByRole('button', { name: /more/i });
+                await moreBtn.click();
+                const moreItems = page.locator('one-app-nav-bar-item-root a');
+                const moreCount = await moreItems.count();
+                for (let i = 0; i < moreCount; i++) 
+                    {
+                        const text = (await moreItems.nth(i).innerText()).trim().toLowerCase();
+                        console.log(`More Item ${i + 1}: ${text}`);
+                        if (text === tabName.toLowerCase()) 
+                            {
+                            console.log(`✅ Found ${tabName} in More → Clicking`);
+                            await moreItems.nth(i).click();
+                            return;
+                             }
+                    }
+                throw new Error(`❌ Tab "${tabName}" not found in navigation bar`);
+            }
+    
+    // async navigateToTab(tabName) 
+    // {
+    // const tab = this.page.getByRole('link', { name: tabName });
+    
+    // if (!(await tab.isVisible())) 
+    //     {
+    //     await this.page.getByRole('button', { name: /more/i }).click();
+    //     }
+    // await tab.waitFor({ state: 'visible' });
+    // await tab.click();
+    // }
 }
 
 export default BasePage;

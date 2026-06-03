@@ -1,6 +1,5 @@
 const  accountPageLocators = 
-    {
-        accountsHomeTab: "//a[@title='Accounts']", 
+    { 
         accountNameInput: "(//input[@name='Name'])[1]",
         saveButton: "//button[@name='SaveEdit']",
 

@@ -1,6 +1,6 @@
-<testsuites id="" name="" tests="5" failures="0" skipped="0" errors="0" time="95.1173909999989">
-<testsuite name="TC_Login.spec.js" timestamp="2026-06-03T11:02:33.711Z" hostname="chrome" tests="5" failures="0" skipped="0" time="53.203" errors="0">
-<testcase name="Login to Salesforce › Step 1 - create new account via Standard Process" classname="TC_Login.spec.js" time="9.793">
+<testsuites id="" name="" tests="1" failures="0" skipped="0" errors="1" time="69.967813">
+<testsuite name="TC_Login.spec.js" timestamp="2026-06-03T13:00:56.485Z" hostname="chrome" tests="1" failures="0" skipped="0" time="30.293" errors="1">
+<testcase name="Login to Salesforce › Step 5 - create Contact via Standard Process" classname="TC_Login.spec.js" time="30.293">
 <system-out>
 <![CDATA[ Starting Salesforce Login (Hybrid Mode)...
 Entered value: jk885827@resourceful-impala-ehughf.com
@@ -11,93 +11,58 @@ Still waiting for approval. 60s remaining...
 Login successful: https://resourceful-impala-ehughf-dev-ed.trailblaze.lightning.force.com/lightning/page/home
 Current URL: https://resourceful-impala-ehughf-dev-ed.trailblaze.lightning.force.com/lightning/page/home
  Login successfully.
-Account Data Generated
-Waiting for Home Page...
-Looking for Accounts Tab...
-Clicking Accounts Tab...
-Entered value: Account_Ron_33244
- Actual Toast Message: Account "Account_Ron_33244" was created.
- Toast verified: Account "Account_Ron_33244" was created.
- Closing toast message...
- Close button clicked
- Toast closed successfully
+Contact Data Generated
+Nav Item 1: home
+Nav Item 2: opportunities
+Nav Item 3: opportunities list
+Nav Item 4: contacts
+✅ Found Contacts → Clicking
+
+[[ATTACHMENT|test-results\TC_Login-Login-to-Salesfor-f23ae-ontact-via-Standard-Process-chrome\test-failed-1.png]]
+
+[[ATTACHMENT|test-results\TC_Login-Login-to-Salesfor-f23ae-ontact-via-Standard-Process-chrome\error-context.md]]
+
+[[ATTACHMENT|test-results\TC_Login-Login-to-Salesfor-f23ae-ontact-via-Standard-Process-chrome\error-context.md]]
 ]]>
 </system-out>
-</testcase>
-<testcase name="Login to Salesforce › Step 2 - create new opportunity via Standard Process" classname="TC_Login.spec.js" time="11.085">
-<system-out>
-<![CDATA[Opportunity Data Generated
-Entered value: Opportunity_Audrey_39155
-Entered value: Account_Ron_33244
-Entered value: 16/06/2026
-Clicked dropdown: button[aria-label='Stage']
-Total options found: 11
-Option 1: --None--
-Option 2: Prospecting
-Selected: Prospecting
- Actual Toast Message: Opportunity "Opportunity_Audrey_39155" was created.
- Toast verified: Opportunity "Opportunity_Audrey_39155" was created.
- Closing toast message...
- Close button clicked
- Toast closed successfully
+<error message="Test timeout of 30000ms exceeded." type="Error">
+<![CDATA[  [chrome] › TC_Login.spec.js:64:10 › Login to Salesforce › Step 5 - create Contact via Standard Process 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: expect(page).toBeEnabled() failed
+
+    Expected: enabled
+    Timeout: 30000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeEnabled" with timeout 30000ms
+
+
+       at ..\pages\base.page.js:55
+
+      53 |         await this.page.waitForLoadState('domcontentloaded');
+      54 |       //  await element.waitFor({ state: 'attached', timeout: 30000 });
+    > 55 |         await expect(element).toBeEnabled({ timeout: 30000 });
+         |                               ^
+      56 |         await element.click();
+      57 |         }
+      58 |
+        at ContactPageMethods.waitAndClick (C:\Users\MindRuby\OneDrive - MIND RUBY TECHNOLOGIES LLP\Desktop\Salesforce\pages\base.page.js:55:31)
+        at ContactPageMethods.clickNewButton (C:\Users\MindRuby\OneDrive - MIND RUBY TECHNOLOGIES LLP\Desktop\Salesforce\pages\contact.page.js:15:11)
+        at ContactPageMethods.createNewContact (C:\Users\MindRuby\OneDrive - MIND RUBY TECHNOLOGIES LLP\Desktop\Salesforce\pages\contact.page.js:32:9)
+        at C:\Users\MindRuby\OneDrive - MIND RUBY TECHNOLOGIES LLP\Desktop\Salesforce\tests\TC_Login.spec.js:69:13
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\test-results\TC_Login-Login-to-Salesfor-f23ae-ontact-via-Standard-Process-chrome\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\test-results\TC_Login-Login-to-Salesfor-f23ae-ontact-via-Standard-Process-chrome\error-context.md
+
+    Error Context: ..\test-results\TC_Login-Login-to-Salesfor-f23ae-ontact-via-Standard-Process-chrome\error-context.md
 ]]>
-</system-out>
-</testcase>
-<testcase name="Login to Salesforce › Step 3 - create Opportunity via Account related tab" classname="TC_Login.spec.js" time="9.517">
-<system-out>
-<![CDATA[Entered value: Account_Ron_33244
-Entered value: Opportunity_Audrey_39155
-Entered value: 16/06/2026
-Clicked dropdown: button[aria-label='Stage']
-Total options found: 11
-Option 1: --None--
-Option 2: Prospecting
-Selected: Prospecting
- Actual Toast Message: Opportunity "Opportunity_Audrey_39155" was created.
- Toast verified: Opportunity "Opportunity_Audrey_39155" was created.
- Closing toast message...
- Close button clicked
- Toast closed successfully
-]]>
-</system-out>
-</testcase>
-<testcase name="Login to Salesforce › Step 4 - create Account Created Via Opportunity" classname="TC_Login.spec.js" time="13.674">
-<system-out>
-<![CDATA[Account Data Generated
-Opportunity Data Generated
-Entered value: Opportunity_Marilie_76005
-Entered value: Account_Deja_76239
- Actual Toast Message: Account "Account_Deja_76239" was created.
- Toast verified: Account "Account_Deja_76239" was created.
- Closing toast message...
- Close button clicked
- Toast closed successfully
-Entered value: 16/06/2026
-Clicked dropdown: button[aria-label='Stage']
-Total options found: 11
-Option 1: --None--
-Option 2: Prospecting
-Selected: Prospecting
- Actual Toast Message: Opportunity "Opportunity_Marilie_76005" was created.
- Toast verified: Opportunity "Opportunity_Marilie_76005" was created.
- Closing toast message...
- Close button clicked
- Toast closed successfully
-]]>
-</system-out>
-</testcase>
-<testcase name="Login to Salesforce › Step 5 - create Contact via Standard Process" classname="TC_Login.spec.js" time="9.134">
-<system-out>
-<![CDATA[Contact Data Generated
-Entered value: Heller
-Entered value: Account_Deja_76239
- Actual Toast Message: Contact "Heller" was created.
- Toast verified: Contact "Heller" was created.
- Closing toast message...
- Close button clicked
- Toast closed successfully
-]]>
-</system-out>
+</error>
 </testcase>
 </testsuite>
 </testsuites>

@@ -7,12 +7,12 @@ export default class ContactPageMethods extends BasePage
 {
     async navigateToContactsTab()
     {
-        await this.waitAndClick(contactPageLocators.contactHeaderTab);;
+         await this.navigateToTab('Contacts');
     }
     
     async clickNewButton()  
         {
-          await this.waitAndClick(contactPageLocators.conatctNewButton);
+          await this.waitAndClick(contactPageLocators.contactNewButton);
         }
 
     async enterLastName(lastName)

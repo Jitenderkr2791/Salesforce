@@ -8,7 +8,7 @@ export default class OpportunityPageMethods extends BasePage
 {
     async navigateToOpportunityTab()
     {
-      await this.waitAndClick(opportunityPageLocators.opportunitiesHomeTab);
+       await this.navigateToTab('Opportunities');
     }
 
     async enterOpportunityName(opportunityName)
@@ -63,7 +63,7 @@ export default class OpportunityPageMethods extends BasePage
     
     async createNewOpportunityViaAccountRelatedTab(testData)
     {
-        await this.waitAndClick(accountPageLocators.accountsHomeTab);
+        await this.navigateToTab('Accounts');
         await this.waitAndType(opportunityPageLocators.searchAccountInput, String(testData.account.accountName));
         await this.page.keyboard.press('Enter');
         await this.waitAndClick(opportunityPageLocators.accountLink(testData.account.accountName));
