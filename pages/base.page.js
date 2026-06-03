@@ -50,15 +50,13 @@ class BasePage
    async waitAndClick(selectorOrLocator) 
    {
         await this.waitForPageStable();
-        let element;
-
-        if (typeof selectorOrLocator === 'string') 
-            {
-            element = this.page.locator(selectorOrLocator);
-        } else {
-            element = selectorOrLocator; // already a locator
-        }
-        await element.first().click(); // auto-handles visibility
+         let element = typeof selectorOrLocator === 'string'?this.page.locator(selectorOrLocator):selectorOrLocator;
+        if (this.page.isClosed())
+             {
+               throw new Error('Page was closed before click');
+             }
+    await element.first().waitFor({ state: 'visible', timeout: 30000 });
+    await element.first().click();
    }
 
     async waitAndHardClick(selector) {

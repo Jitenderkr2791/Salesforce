@@ -113,7 +113,7 @@ export default class LoginPageMethods extends BasePage
   }
 
   
-  async loginSmartHybrid({maxOtpAttempts = 3, authTimeout = 60000} = {})
+  async loginSmartHybrid({maxOtpAttempts = 1, authTimeout = 60000} = {})
   {
     console.log(' Starting Salesforce Login (Hybrid Mode)...');
     await this.enterCredentials();
