@@ -37,6 +37,23 @@ export function generateOpportunityData()                                       
     return data;
 }
 
+export function generateContactData()
+{
+    const existingData = JSON.parse(fs.readFileSync(filePath, 'utf-8'));            // Read existing account data
+    const data = 
+    {
+        ...existingData,
+        contact: {
+                    firstName: faker.person.firstName(),
+                    accountName: existingData.account.accountName,
+                    lastName: faker.person.lastName(),
+                  }
+    };
+    fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
+    console.log('Contact Data Generated');
+    return data;
+}
+
 export function getTestData()           // Read Test Data
 {
     return JSON.parse(fs.readFileSync(filePath, 'utf-8'));

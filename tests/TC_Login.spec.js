@@ -32,7 +32,7 @@ test.describe.serial('Login to Salesforce', () => {
     test('Step 1 - create new account via Standard Process', async () => 
         { 
             generateAccountData(); 
-            const testData = getTestData();
+            testData = getTestData();
             account = new AccountPageMethods(page);                      
             await account.createNewAccount(testData);
          });
@@ -40,14 +40,14 @@ test.describe.serial('Login to Salesforce', () => {
     test('Step 2 - create new opportunity via Standard Process', async () => 
         {
             generateOpportunityData(); 
-            const testData = getTestData();                      // Read latest data
+            testData = getTestData();                      // Read latest data
             opportunity = new OpportunityPageMethods(page);    
             await opportunity.createNewOpportunity(testData);
        });
 
     test('Step 3 - create Opportunity via Account related tab', async () => 
        {    
-            const testData = getTestData();
+            testData = getTestData();
             opportunity = new OpportunityPageMethods(page);
             await opportunity.createNewOpportunityViaAccountRelatedTab(testData);    
        });   
@@ -56,14 +56,15 @@ test.describe.serial('Login to Salesforce', () => {
        {
           generateAccountData(); 
           generateOpportunityData();
-          const testData = getTestData();
+          testData = getTestData();
           account = new AccountPageMethods(page); 
           await account.createAccountViaOpportunityCreation(testData);
       });
     
     test('Step 5 - create Contact via Standard Process', async () =>
        {    
-            const testData = getTestData();
+            generateContactData();
+            testData = getTestData();
             contact = new ContactPageMethods(page);
             await contact.createNewContact(testData);
        });
