@@ -1,5 +1,16 @@
 {
   "account": {
-    "accountName": "Account_Reginald_69534"
+    "accountName": "Account_Deja_76239"
+  },
+  "opportunity": {
+    "opportunityName": "Opportunity_Marilie_76005",
+    "accountName": "Account_Deja_76239",
+    "closeDate": "16/06/2026",
+    "stage": "Prospecting"
+  },
+  "contact": {
+    "firstName": "Rhonda",
+    "accountName": "Account_Deja_76239",
+    "lastName": "Heller"
   }
 }

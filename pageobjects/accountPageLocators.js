@@ -1,6 +1,6 @@
 const  accountPageLocators = 
     {
-        accountsHomeTab: 'a[title="Accounts"][aria-current="page"]', 
+        accountsHomeTab: "//a[@title='Accounts']", 
         accountNameInput: "(//input[@name='Name'])[1]",
         saveButton: "//button[@name='SaveEdit']",
 

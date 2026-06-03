@@ -1,2 +1,103 @@
-<testsuites id="" name="" tests="0" failures="0" skipped="0" errors="0" time="3.605741999999969">
+<testsuites id="" name="" tests="5" failures="0" skipped="0" errors="0" time="95.1173909999989">
+<testsuite name="TC_Login.spec.js" timestamp="2026-06-03T11:02:33.711Z" hostname="chrome" tests="5" failures="0" skipped="0" time="53.203" errors="0">
+<testcase name="Login to Salesforce › Step 1 - create new account via Standard Process" classname="TC_Login.spec.js" time="9.793">
+<system-out>
+<![CDATA[ Starting Salesforce Login (Hybrid Mode)...
+Entered value: jk885827@resourceful-impala-ehughf.com
+Entered value: Test@12345678
+Authenticator page detected. Waiting for mobile device approval...
+Still waiting for approval. 60s remaining...
+ Waiting for auth page...
+Login successful: https://resourceful-impala-ehughf-dev-ed.trailblaze.lightning.force.com/lightning/page/home
+Current URL: https://resourceful-impala-ehughf-dev-ed.trailblaze.lightning.force.com/lightning/page/home
+ Login successfully.
+Account Data Generated
+Waiting for Home Page...
+Looking for Accounts Tab...
+Clicking Accounts Tab...
+Entered value: Account_Ron_33244
+ Actual Toast Message: Account "Account_Ron_33244" was created.
+ Toast verified: Account "Account_Ron_33244" was created.
+ Closing toast message...
+ Close button clicked
+ Toast closed successfully
+]]>
+</system-out>
+</testcase>
+<testcase name="Login to Salesforce › Step 2 - create new opportunity via Standard Process" classname="TC_Login.spec.js" time="11.085">
+<system-out>
+<![CDATA[Opportunity Data Generated
+Entered value: Opportunity_Audrey_39155
+Entered value: Account_Ron_33244
+Entered value: 16/06/2026
+Clicked dropdown: button[aria-label='Stage']
+Total options found: 11
+Option 1: --None--
+Option 2: Prospecting
+Selected: Prospecting
+ Actual Toast Message: Opportunity "Opportunity_Audrey_39155" was created.
+ Toast verified: Opportunity "Opportunity_Audrey_39155" was created.
+ Closing toast message...
+ Close button clicked
+ Toast closed successfully
+]]>
+</system-out>
+</testcase>
+<testcase name="Login to Salesforce › Step 3 - create Opportunity via Account related tab" classname="TC_Login.spec.js" time="9.517">
+<system-out>
+<![CDATA[Entered value: Account_Ron_33244
+Entered value: Opportunity_Audrey_39155
+Entered value: 16/06/2026
+Clicked dropdown: button[aria-label='Stage']
+Total options found: 11
+Option 1: --None--
+Option 2: Prospecting
+Selected: Prospecting
+ Actual Toast Message: Opportunity "Opportunity_Audrey_39155" was created.
+ Toast verified: Opportunity "Opportunity_Audrey_39155" was created.
+ Closing toast message...
+ Close button clicked
+ Toast closed successfully
+]]>
+</system-out>
+</testcase>
+<testcase name="Login to Salesforce › Step 4 - create Account Created Via Opportunity" classname="TC_Login.spec.js" time="13.674">
+<system-out>
+<![CDATA[Account Data Generated
+Opportunity Data Generated
+Entered value: Opportunity_Marilie_76005
+Entered value: Account_Deja_76239
+ Actual Toast Message: Account "Account_Deja_76239" was created.
+ Toast verified: Account "Account_Deja_76239" was created.
+ Closing toast message...
+ Close button clicked
+ Toast closed successfully
+Entered value: 16/06/2026
+Clicked dropdown: button[aria-label='Stage']
+Total options found: 11
+Option 1: --None--
+Option 2: Prospecting
+Selected: Prospecting
+ Actual Toast Message: Opportunity "Opportunity_Marilie_76005" was created.
+ Toast verified: Opportunity "Opportunity_Marilie_76005" was created.
+ Closing toast message...
+ Close button clicked
+ Toast closed successfully
+]]>
+</system-out>
+</testcase>
+<testcase name="Login to Salesforce › Step 5 - create Contact via Standard Process" classname="TC_Login.spec.js" time="9.134">
+<system-out>
+<![CDATA[Contact Data Generated
+Entered value: Heller
+Entered value: Account_Deja_76239
+ Actual Toast Message: Contact "Heller" was created.
+ Toast verified: Contact "Heller" was created.
+ Closing toast message...
+ Close button clicked
+ Toast closed successfully
+]]>
+</system-out>
+</testcase>
+</testsuite>
 </testsuites>

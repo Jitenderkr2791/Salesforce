@@ -47,17 +47,14 @@ class BasePage
 
     /** ---------- Clicks & Typing ---------- **/
 
-   async waitAndClick(selectorOrLocator) 
-   {
-        await this.waitForPageStable();
-         let element = typeof selectorOrLocator === 'string'?this.page.locator(selectorOrLocator):selectorOrLocator;
-        if (this.page.isClosed())
-             {
-               throw new Error('Page was closed before click');
-             }
-    await element.first().waitFor({ state: 'visible', timeout: 30000 });
-    await element.first().click();
-   }
+    async waitAndClick(selector) 
+        {
+        const element = this.page.locator(selector);
+        await this.page.waitForLoadState('domcontentloaded');
+        await element.waitFor({ state: 'attached', timeout: 30000 });
+        await expect(element).toBeEnabled({ timeout: 30000 });
+        await element.click();
+        }
 
     async waitAndHardClick(selector) {
         const element = await this.page.$(selector);

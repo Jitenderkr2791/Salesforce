@@ -3,11 +3,17 @@ import commonLocators from '../pageobjects/commonLocators.js';
 import contactPageLocators from '../pageobjects/contactPageLocators.js';
 import OpportunityPageMethods from './opportunity.page.js';
 
-export default class ContactPageMethods extends BasePage{
+export default class ContactPageMethods extends BasePage
+{
     async navigateToContactsTab()
     {
-        await this.waitAndClick(contactPageLocators.contactHeaderTab);
+        await this.waitAndClick(contactPageLocators.contactHeaderTab);;
     }
+    
+    async clickNewButton()  
+        {
+          await this.waitAndClick(contactPageLocators.conatctNewButton);
+        }
 
     async enterLastName(lastName)
     {
