@@ -6,10 +6,17 @@ import OpportunityPageMethods from './opportunity.page.js';
 
 export default class AccountPageMethods extends BasePage
 {  
-    async navigateToAccountsTab()
-    {
-        await this.waitAndClick(this.page.getByRole('link', { name: 'Accounts' }));
-    }
+    async navigateToAccountsTab() {
+    console.log('Waiting for Home Page...');
+    await this.page.waitForURL('**/lightning/page/home', { timeout: 60000 });
+    await this.page.waitForLoadState('domcontentloaded');
+
+    console.log('Looking for Accounts Tab...');
+    const accountsTab = this.page.getByRole('link', { name: 'Accounts' });
+    await accountsTab.waitFor({ state: 'attached', timeout: 60000 });
+    console.log('Clicking Accounts Tab...');
+    await accountsTab.first().click();
+}
 
     async enterAccountName(accountName)
     {

@@ -128,6 +128,7 @@ export default class LoginPageMethods extends BasePage
       if (this.homeUrlPattern.test(this.page.url()))
       {
         console.log(`Login successful: ${this.page.url()}`);
+        console.log('Current URL:', this.page.url());
         return;
       }
 
