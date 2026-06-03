@@ -4,7 +4,7 @@ import LoginPageMethods from '../pages/login.page.js';
 import AccountPageMethods from '../pages/account.page.js';
 import OpportunityPageMethods from '../pages/opportunity.page.js';
 import ContactPageMethods from '../pages/contact.page.js';
-import { generateAccountData, generateOpportunityData, getTestData } from '../test-data/testDataGenerator.js';
+import { generateAccountData, generateOpportunityData, generateContactData, getTestData } from '../test-data/testDataGenerator.js';
 
 test.describe.serial('Login to Salesforce', () => {
   let page, context;
