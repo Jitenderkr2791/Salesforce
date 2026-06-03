@@ -8,7 +8,7 @@ export default class AccountPageMethods extends BasePage
 {  
     async navigateToAccountsTab()
     {
-        await this.waitAndClick(accountPageLocators.accountsHomeTab);
+        await this.waitAndClick(this.page.getByRole('link', { name: 'Accounts' }));
     }
 
     async enterAccountName(accountName)

@@ -47,12 +47,19 @@ class BasePage
 
     /** ---------- Clicks & Typing ---------- **/
 
-    async waitAndClick(selector) {
+   async waitAndClick(selectorOrLocator) 
+   {
         await this.waitForPageStable();
-        const element = this.page.locator(selector);
-        await element.waitFor({ state: 'visible', timeout: 15000 });
-        await element.click();
-    }
+        let element;
+
+        if (typeof selectorOrLocator === 'string') 
+            {
+            element = this.page.locator(selectorOrLocator);
+        } else {
+            element = selectorOrLocator; // already a locator
+        }
+        await element.first().click(); // auto-handles visibility
+   }
 
     async waitAndHardClick(selector) {
         const element = await this.page.$(selector);
