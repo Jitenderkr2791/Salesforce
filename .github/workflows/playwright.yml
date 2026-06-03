@@ -40,7 +40,7 @@ jobs:
 
       # ✅ Run tests (multi-browser)
       - name: Run Playwright tests
-        run: npx playwright test --workers=4
+        run: npx playwright test --workers=1
 
       # ✅ Install Allure
       - name: Install Allure
