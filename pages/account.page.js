@@ -16,7 +16,7 @@ export default class AccountPageMethods extends BasePage
     await accountsTab.waitFor({ state: 'attached', timeout: 60000 });
     console.log('Clicking Accounts Tab...');
     await accountsTab.first().click();
-}
+    }
 
     async enterAccountName(accountName)
     {

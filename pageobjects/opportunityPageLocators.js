@@ -15,5 +15,5 @@ const opportunityPageLocators =
         accountLink: (accountName) => `//a[@title='${accountName}']`,
         accountRelatableTab: "//li[@data-target-selection-name='relatedListsTabTab']",
         accountOpportunityNewTab:"//li[@data-target-selection-name='sfdc:StandardButton.Opportunity.New']",
-}
-export default opportunityPageLocators
+};
+export default opportunityPageLocators;

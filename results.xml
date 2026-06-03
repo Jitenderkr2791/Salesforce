@@ -1,6 +1,2 @@
-<testsuites id="" name="" tests="1" failures="0" skipped="0" errors="0" time="6.2220460000000894">
-<testsuite name="test-1.spec.ts" timestamp="2026-06-02T12:38:35.600Z" hostname="chrome" tests="1" failures="0" skipped="0" time="1.477" errors="0">
-<testcase name="test" classname="test-1.spec.ts" time="1.477">
-</testcase>
-</testsuite>
+<testsuites id="" name="" tests="0" failures="0" skipped="0" errors="0" time="1.4306269999998622">
 </testsuites>

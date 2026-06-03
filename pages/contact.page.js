@@ -1,11 +1,12 @@
 import BasePage from './base.page.js';
 import commonLocators from '../pageobjects/commonLocators.js';
 import contactPageLocators from '../pageobjects/contactPageLocators.js';
+import OpportunityPageMethods from './opportunity.page.js';
 
 export default class ContactPageMethods extends BasePage{
     async navigateToContactsTab()
     {
-        await this.waitAndClick(contactPageLocators.contactsHomeTab);
+        await this.waitAndClick(contactPageLocators.contactHeaderTab);
     }
 
     async enterLastName(lastName)
@@ -24,7 +25,7 @@ export default class ContactPageMethods extends BasePage{
         await this.navigateToContactsTab();
         await this.clickNewButton();
         await this.enterLastName(testData.contact.lastName);
-        opportunity = new OpportunityPageMethods(this.page);
+        const opportunity = new OpportunityPageMethods(this.page);
         await opportunity.enterAccountName(testData.account.accountName);
         await this.clickSaveButton();
         await this.verifyToastMessage("Contact", testData.contact.lastName);

@@ -1,4 +1,5 @@
-const contactPageLocators = {
+const contactPageLocators = 
+{
     contactHeaderTab : "//a[@title='Contacts']",
     lastNameInput : "//input[@placeholder='Last Name']",
     saveButton : "//button[@title='Save']"

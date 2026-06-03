@@ -10,5 +10,5 @@
     otpPageHeading : "//h2[text()='Verify Your Identity']",
     havingTrouble : "//a[contains(text(),'Having Trouble?')]",
     differentVerificationMethod : "//a[contains(text(),'Use a Different Verification Method')]"
-}
+};
 export default loginPageLocators;
