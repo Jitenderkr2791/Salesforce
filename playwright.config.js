@@ -25,8 +25,9 @@ export default defineConfig
       use: {
         browserName: 'chromium',
 
-         headless: process.env.HEADLESS === 'true',     //  CONTROL FROM ENV //$env:HEADLESS="true"; npx playwright test
-         viewport: process.env.HEADLESS === 'true'? { width: 1920, height: 1080 } : null,      // ✅ MAXIMIZE IN HEADED, FIX SIZE IN HEADLESS
+         headless: process.env.CI ? true : process.env.HEADLESS === 'true',     //  CONTROL FROM ENV //$env:HEADLESS="true"; npx playwright test
+         viewport: process.env.CI ? { width: 1920, height: 1080 }: process.env.HEADLESS === 'true'? { width: 1920, height: 1080 }: null,
+      // ✅ MAXIMIZE IN HEADED, FIX SIZE IN HEADLESS
          launchOptions: { args: ['--start-maximized']},  // Start browser maximized (works in headed mode, safe to keep in headless)
 
         /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
