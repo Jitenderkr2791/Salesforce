@@ -1,5 +1,4 @@
 import { expect } from '@playwright/test';
-import commonLocators from '../pageobjects/commonLocators';
 
 class BasePage 
 {
@@ -47,7 +46,7 @@ class BasePage
 
     /** ---------- Clicks & Typing ---------- **/
 
-    async waitAndClick(selector) 
+     async waitAndClick(selector) 
         {
         const element = this.page.locator(selector);
         await this.page.waitForLoadState('domcontentloaded');
@@ -87,69 +86,6 @@ class BasePage
     }
 
     /** ---------- Dropdown ---------- **/
-   static async enterTextAndSelectValueFromDropdown(page, inputSelector, value, optionSelector) 
-    {
-        const input = page.locator(inputSelector);
-        await input.click();
-        await input.fill(value);
-        const options = page.locator(optionSelector);
-        await options.first().waitFor({ state: 'visible', timeout: 15000 });
-        const count = await options.count();
-        console.log("Available dropdown options:");
-
-        for (let i = 0; i < count; i++) 
-         {
-            const option = options.nth(i);
-            let optionText = await option.getAttribute('title');
-            if (!optionText) {
-                optionText = (await option.textContent())?.trim();
-                }
-            console.log(` ${i + 1}. ${optionText}`);
-            if (optionText && optionText.toLowerCase().includes(value.toLowerCase())) 
-                {
-                    console.log(`Match found: "${optionText}" → Clicking`);
-                    await option.click();
-                    return;
-                }
-         }
-    throw new Error(`Value "${value}" not found in dropdown`);
-    }
-
-    async selectValueFromDropdown(inputSelector, optionSelector, value) 
-    {
-        
-        const input = this.page.locator(inputSelector);      // 1. Click dropdown
-        await input.waitFor({ state: 'visible', timeout: 15000 });   
-        await input.click();
-        console.log(`Clicked dropdown: ${inputSelector}`);
-        
-        const options = this.page.locator(`${optionSelector}:visible`);  // 2. Locate options dynamically
-
-        await options.first().waitFor({ state: 'visible', timeout: 15000 });
-
-        const count = await options.count();
-        console.log(`Total options found: ${count}`);
-
-        for (let i = 0; i < count; i++)      // 3. Loop through options
-        {
-            const option = options.nth(i);
-            let text = await option.locator('[title]').getAttribute('title');
-            if (!text) 
-                {
-                text = (await option.textContent())?.trim();
-                }
-            console.log(`Option ${i + 1}: ${text}`);
-           
-            if (text && text.toLowerCase() === value.toLowerCase())      // 4. Match & click
-                {
-                    console.log(`Selected: ${text}`);
-                    await option.scrollIntoViewIfNeeded();
-                    await option.click();
-                    return;
-                }
-        }
-    throw new Error(`Value "${value}" not found in dropdown`);
-    }
 
     /** ---------- Verifications ---------- **/
     async verifyElementText(selector, expectedText) 
@@ -241,90 +177,5 @@ class BasePage
         await this.page.screenshot({ path: name, fullPage: true });
         console.log(`📸 Screenshot saved as: ${name}`);
     }
-
-    async verifyToastMessage(entityName, recordName)
-     {
-            const toastLocator = await this.page.locator(commonLocators.toastMessage);
-            await toastLocator.waitFor({ state: 'visible' });
-            const actualMessage = await toastLocator.textContent();
-            const trimmedMessage = actualMessage.trim();
-            console.log(" Actual Toast Message:", trimmedMessage);
-            const regex = new RegExp(`${entityName}\\s+"${recordName}"\\s+was created\\.?`);
-                if (!regex.test(trimmedMessage))
-                {
-                    throw new Error(` Toast message mismatch! Expected pattern: ${entityName} "${recordName}" was created  Actual: ${trimmedMessage}`);
-                }
-                console.log(" Toast verified:", trimmedMessage);
-     }
-    
-    async closeToastMessage()
-        {
-            console.log(" Closing toast message...");
-            const toast = this.page.locator(commonLocators.toastMessage);
-            const closeBtn = this.page.locator(commonLocators.toastCloseButton);
-            if (await closeBtn.isVisible())
-            {
-                await closeBtn.click();
-                console.log(" Close button clicked");
-                await expect(toast).toBeHidden({ timeout: 10000 });       // Wait until toast disappears (max 10 sec)
-                console.log(" Toast closed successfully");
-            }
-            else
-            {
-                console.log(" Toast close button not visible");
-            }
-        }
-    async clickNewButton()  
-    {
-      await this.waitAndClick(commonLocators.newButton);
-    }
-
-    async navigateToTab(tabName) 
-            {
-                const page = this.page;
-                const navLinks = page.locator('nav[aria-label="Global"] a');
-                const count = await navLinks.count();
-                for (let i = 0; i < count; i++) 
-                {
-                  const text = (await navLinks.nth(i).innerText()).trim().toLowerCase();
-                  console.log(`Nav Item ${i + 1}: ${text}`);
-                  if (text === tabName.toLowerCase())   
-                    {
-                        console.log(`✅ Found ${tabName} → Clicking`);
-                        await navLinks.nth(i).click();
-                        return;
-                        }
-                    }
-                console.log(` ${tabName} not visible. Checking inside 'More' menu`);
-                const moreBtn = page.getByRole('button', { name: /more/i });
-                await moreBtn.click();
-                const moreItems = page.locator('one-app-nav-bar-item-root a');
-                const moreCount = await moreItems.count();
-                for (let i = 0; i < moreCount; i++) 
-                    {
-                        const text = (await moreItems.nth(i).innerText()).trim().toLowerCase();
-                        console.log(`More Item ${i + 1}: ${text}`);
-                        if (text === tabName.toLowerCase()) 
-                            {
-                            console.log(`✅ Found ${tabName} in More → Clicking`);
-                            await moreItems.nth(i).click();
-                            return;
-                             }
-                    }
-                throw new Error(`❌ Tab "${tabName}" not found in navigation bar`);
-            }
-    
-    // async navigateToTab(tabName) 
-    // {
-    // const tab = this.page.getByRole('link', { name: tabName });
-    
-    // if (!(await tab.isVisible())) 
-    //     {
-    //     await this.page.getByRole('button', { name: /more/i }).click();
-    //     }
-    // await tab.waitFor({ state: 'visible' });
-    // await tab.click();
-    // }
 }
-
 export default BasePage;

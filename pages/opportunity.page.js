@@ -3,12 +3,13 @@ import BasePage from './base.page.js';
 import opportunityPageLocators from '../pageobjects/opportunityPageLocators.js';
 import accountPageLocators from '../pageobjects/accountPageLocators.js';
 import commonLocators from '../pageobjects/commonLocators.js';
+import CommonMethods from './commonmethods.js';
 
-export default class OpportunityPageMethods extends BasePage
+export default class OpportunityPageMethods extends CommonMethods
 {
     async navigateToOpportunityTab()
     {
-       await this.navigateToTab('Opportunities');
+       await this.navigationTab('Opportunities');
     }
 
     async enterOpportunityName(opportunityName)
@@ -18,9 +19,7 @@ export default class OpportunityPageMethods extends BasePage
 
     async enterAccountName(accountName)
     {
-      await this.waitAndType(opportunityPageLocators.accountNameInput,String(accountName));
-      const accountOption = this.page.locator(opportunityPageLocators.accountDropdownOptions);
-      await accountOption.first().click();
+      await this.enterAndSelectFromValueDropDown(opportunityPageLocators.accountNameInput,opportunityPageLocators.accountDropdownOptions,String(accountName));
     }
 
     async enterCloseDate(closeDate)
@@ -33,15 +32,17 @@ export default class OpportunityPageMethods extends BasePage
       await this.selectValueFromDropdown(opportunityPageLocators.stageDropdown, opportunityPageLocators.stageOption, String(stage));
     }
 
-    async clickSaveButton()
-    {
-      await this.waitAndClick(opportunityPageLocators.saveButton);
-    }
+    
+      async clickSaveButton()
+      {
+        await this.clickStandardButton('Opportunity', 'SaveEdit');
+      }
+
 
     async createNewOpportunity(testData)
     {
       await this.navigateToOpportunityTab();
-      await this.clickNewButton();
+      await this.HeaderActions('New');
       await this.enterOpportunityName(testData.opportunity.opportunityName);
       await this.enterAccountName(testData.account.accountName);
       await this.enterCloseDate(testData.opportunity.closeDate);
@@ -60,10 +61,11 @@ export default class OpportunityPageMethods extends BasePage
     {
         await this.waitAndClick(opportunityPageLocators.accountOpportunityNewTab);
     }
+
     
     async createNewOpportunityViaAccountRelatedTab(testData)
     {
-        await this.navigateToTab('Accounts');
+        await this.navigationTab('Accounts');
         await this.waitAndType(opportunityPageLocators.searchAccountInput, String(testData.account.accountName));
         await this.page.keyboard.press('Enter');
         await this.waitAndClick(opportunityPageLocators.accountLink(testData.account.accountName));

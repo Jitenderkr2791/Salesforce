@@ -1,6 +1,6 @@
-<testsuites id="" name="" tests="1" failures="0" skipped="0" errors="1" time="69.967813">
-<testsuite name="TC_Login.spec.js" timestamp="2026-06-03T13:00:56.485Z" hostname="chrome" tests="1" failures="0" skipped="0" time="30.293" errors="1">
-<testcase name="Login to Salesforce › Step 5 - create Contact via Standard Process" classname="TC_Login.spec.js" time="30.293">
+<testsuites id="" name="" tests="5" failures="0" skipped="1" errors="0" time="80.01545300000001">
+<testsuite name="TC_Login.spec.js" timestamp="2026-06-04T11:59:14.675Z" hostname="chrome" tests="5" failures="0" skipped="1" time="50.787" errors="0">
+<testcase name="Login to Salesforce › Step 1 - create new account via Standard Process" classname="TC_Login.spec.js" time="9.525">
 <system-out>
 <![CDATA[ Starting Salesforce Login (Hybrid Mode)...
 Entered value: jk885827@resourceful-impala-ehughf.com
@@ -10,59 +10,147 @@ Still waiting for approval. 60s remaining...
  Waiting for auth page...
 Login successful: https://resourceful-impala-ehughf-dev-ed.trailblaze.lightning.force.com/lightning/page/home
 Current URL: https://resourceful-impala-ehughf-dev-ed.trailblaze.lightning.force.com/lightning/page/home
+
+🧪 ===== Browser Details (Headless) =====
+🖥️ Playwright Viewport: { width: [33m1920[39m, height: [33m1080[39m }
+🌐 Browser Size + Zoom: {
+  innerWidth: [33m1920[39m,
+  innerHeight: [33m1080[39m,
+  outerWidth: [33m1920[39m,
+  outerHeight: [33m1080[39m,
+  devicePixelRatio: [33m1[39m,
+  zoom: [32m'80%'[39m
+}
+=====================================
+
  Login successfully.
-Contact Data Generated
+Account Data Generated
+🔍 Navigating to: Accounts
+Total visible nav items: 29
 Nav Item 1: home
-Nav Item 2: opportunities
-Nav Item 3: opportunities list
-Nav Item 4: contacts
-✅ Found Contacts → Clicking
+Nav Item 2: accounts
+✅ Found Accounts → Clicking
 
-[[ATTACHMENT|test-results\TC_Login-Login-to-Salesfor-f23ae-ontact-via-Standard-Process-chrome\test-failed-1.png]]
-
-[[ATTACHMENT|test-results\TC_Login-Login-to-Salesfor-f23ae-ontact-via-Standard-Process-chrome\error-context.md]]
-
-[[ATTACHMENT|test-results\TC_Login-Login-to-Salesfor-f23ae-ontact-via-Standard-Process-chrome\error-context.md]]
+🔍 Searching Header Action: New
+📊 Total header items: 18
+Item 1: Accounts
+Item 2: Select a List View: Accounts
+Item 3: This list is pinned.
+Item 4: New
+✅ Clicking: New
+Entered value: Account_Cassandre_5615
+ Actual Toast Message: Account "Account_Cassandre_5615" was created.
+ Toast verified: Account "Account_Cassandre_5615" was created.
+ Closing toast message...
+ Close button clicked
+ Toast closed successfully
 ]]>
 </system-out>
-<error message="Test timeout of 30000ms exceeded." type="Error">
-<![CDATA[  [chrome] › TC_Login.spec.js:64:10 › Login to Salesforce › Step 5 - create Contact via Standard Process 
+</testcase>
+<testcase name="Login to Salesforce › Step 2 - create new opportunity via Standard Process" classname="TC_Login.spec.js" time="11.96">
+<system-out>
+<![CDATA[Opportunity Data Generated
+🔍 Navigating to: Opportunities
+Total visible nav items: 29
+Nav Item 1: home
+Nav Item 2: accounts
+Nav Item 3: accounts list
+Nav Item 4: opportunities
+✅ Found Opportunities → Clicking
 
-    Test timeout of 30000ms exceeded.
-
-    Error: expect(page).toBeEnabled() failed
-
-    Expected: enabled
-    Timeout: 30000ms
-    Error: element(s) not found
-
-    Call log:
-      - Expect "toBeEnabled" with timeout 30000ms
-
-
-       at ..\pages\base.page.js:55
-
-      53 |         await this.page.waitForLoadState('domcontentloaded');
-      54 |       //  await element.waitFor({ state: 'attached', timeout: 30000 });
-    > 55 |         await expect(element).toBeEnabled({ timeout: 30000 });
-         |                               ^
-      56 |         await element.click();
-      57 |         }
-      58 |
-        at ContactPageMethods.waitAndClick (C:\Users\MindRuby\OneDrive - MIND RUBY TECHNOLOGIES LLP\Desktop\Salesforce\pages\base.page.js:55:31)
-        at ContactPageMethods.clickNewButton (C:\Users\MindRuby\OneDrive - MIND RUBY TECHNOLOGIES LLP\Desktop\Salesforce\pages\contact.page.js:15:11)
-        at ContactPageMethods.createNewContact (C:\Users\MindRuby\OneDrive - MIND RUBY TECHNOLOGIES LLP\Desktop\Salesforce\pages\contact.page.js:32:9)
-        at C:\Users\MindRuby\OneDrive - MIND RUBY TECHNOLOGIES LLP\Desktop\Salesforce\tests\TC_Login.spec.js:69:13
-
-    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
-    ..\test-results\TC_Login-Login-to-Salesfor-f23ae-ontact-via-Standard-Process-chrome\test-failed-1.png
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    Error Context: ..\test-results\TC_Login-Login-to-Salesfor-f23ae-ontact-via-Standard-Process-chrome\error-context.md
-
-    Error Context: ..\test-results\TC_Login-Login-to-Salesfor-f23ae-ontact-via-Standard-Process-chrome\error-context.md
+🔍 Searching Header Action: New
+📊 Total header items: 18
+Item 1: Accounts
+Item 2: Select a List View: Accounts
+Item 3: This list is pinned.
+Item 4: New
+✅ Clicking: New
+Entered value: Opportunity_Jayme_17312
+Entered value: Account_Cassandre_5615
+Entered value: 16/06/2026
+Clicked dropdown: button[aria-label='Stage']
+Total options found: 11
+Option 1: --None--
+Option 2: Prospecting
+Selected: Prospecting
+ Actual Toast Message: Opportunity "Opportunity_Jayme_17312" was created.
+ Toast verified: Opportunity "Opportunity_Jayme_17312" was created.
+ Closing toast message...
+ Close button clicked
+ Toast closed successfully
 ]]>
-</error>
+</system-out>
+</testcase>
+<testcase name="Login to Salesforce › Step 3 - create Opportunity via Account related tab" classname="TC_Login.spec.js" time="10.137">
+<system-out>
+<![CDATA[🔍 Navigating to: Accounts
+Total visible nav items: 29
+Nav Item 1: home
+Nav Item 2: accounts
+✅ Found Accounts → Clicking
+Entered value: Account_Cassandre_5615
+Entered value: Opportunity_Jayme_17312
+Entered value: 16/06/2026
+Clicked dropdown: button[aria-label='Stage']
+Total options found: 11
+Option 1: --None--
+Option 2: Prospecting
+Selected: Prospecting
+ Actual Toast Message: Opportunity "Opportunity_Jayme_17312" was created.
+ Toast verified: Opportunity "Opportunity_Jayme_17312" was created.
+ Closing toast message...
+ Close button clicked
+ Toast closed successfully
+]]>
+</system-out>
+</testcase>
+<testcase name="Login to Salesforce › Step 4 - create Account Created Via Opportunity" classname="TC_Login.spec.js" time="19.165">
+<system-out>
+<![CDATA[Account Data Generated
+Opportunity Data Generated
+🔍 Navigating to: Opportunities
+Total visible nav items: 29
+Nav Item 1: home
+Nav Item 2: accounts
+Nav Item 3: accounts list
+Nav Item 4: opportunities
+✅ Found Opportunities → Clicking
+
+🔍 Searching Header Action: New
+📊 Total header items: 18
+Item 1: Accounts
+Item 2: Select a List View: Accounts
+Item 3: This list is pinned.
+Item 4: New
+✅ Clicking: New
+Entered value: Opportunity_Christiana_73756
+Entered value: Account_Alicia_29052
+ Actual Toast Message: Account "Account_Alicia_29052" was created.
+ Toast verified: Account "Account_Alicia_29052" was created.
+ Closing toast message...
+ Close button clicked
+ Toast closed successfully
+Entered value: 16/06/2026
+Clicked dropdown: button[aria-label='Stage']
+Total options found: 11
+Option 1: --None--
+Option 2: Prospecting
+Selected: Prospecting
+ Actual Toast Message: Opportunity "Opportunity_Christiana_73756" was created.
+ Toast verified: Opportunity "Opportunity_Christiana_73756" was created.
+ Closing toast message...
+ Close button clicked
+ Toast closed successfully
+]]>
+</system-out>
+</testcase>
+<testcase name="Login to Salesforce › Step 5 - create Contact via Standard Process" classname="TC_Login.spec.js">
+<properties>
+<property name="skip" value="">
+</property>
+</properties>
+<skipped>
+</skipped>
 </testcase>
 </testsuite>
 </testsuites>

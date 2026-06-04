@@ -1,16 +1,11 @@
 {
   "account": {
-    "accountName": "Account_Lambert_14852"
+    "accountName": "Account_Alicia_29052"
   },
   "opportunity": {
-    "opportunityName": "Opportunity_Caitlyn_6195",
-    "accountName": "Account_Lambert_14852",
+    "opportunityName": "Opportunity_Christiana_73756",
+    "accountName": "Account_Alicia_29052",
     "closeDate": "16/06/2026",
     "stage": "Prospecting"
-  },
-  "contact": {
-    "firstName": "Bridie",
-    "accountName": "Account_Lambert_14852",
-    "lastName": "Erdman"
   }
 }

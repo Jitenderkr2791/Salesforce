@@ -14,23 +14,20 @@ import { defineConfig, devices } from '@playwright/test';
 export default defineConfig
 ({
       testDir: './tests',
-      /* Run tests in files in parallel */
-      fullyParallel: true,
-      /* Fail the build on CI if you accidentally left test.only in the source code. */
-      forbidOnly: !!process.env.CI,
-      /* Retry on CI only */
-      retries: process.env.CI ? 2 : 0,
-      /* Opt out of parallel tests on CI. */
-      workers: process.env.CI ? 1 : undefined,
-      /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-      reporter:[ ['html'],
-                ['junit', { outputFile: 'results.xml' }], 
-                ['allure-playwright']
-            ],
+      fullyParallel: true,                            /* Run tests in files in parallel */
+      forbidOnly: !!process.env.CI,                   /* Fail the build on CI if you accidentally left test.only in the source code. */
+      retries: process.env.CI ? 2 : 0,                /* Retry on CI only */
+      workers: process.env.CI ? 1 : undefined,       /* Opt out of parallel tests on CI. */
+     
+      reporter:[ ['html'],['junit', { outputFile: 'results.xml' }], ['allure-playwright'] ],       /* Reporter to use. See https://playwright.dev/docs/test-reporters */
+                                                                
       /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
       use: {
-        /* Base URL to use in actions like `await page.goto('')`. */
-        // baseURL: 'http://localhost:3000',
+        browserName: 'chromium',
+
+         headless: process.env.HEADLESS === 'true',     //  CONTROL FROM ENV //$env:HEADLESS="true"; npx playwright test
+         viewport: process.env.HEADLESS === 'true'? { width: 1920, height: 1080 } : null,      // ✅ MAXIMIZE IN HEADED, FIX SIZE IN HEADLESS
+         launchOptions: { args: ['--start-maximized']},  // Start browser maximized (works in headed mode, safe to keep in headless)
 
         /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
         trace: 'on-first-retry',
@@ -46,15 +43,10 @@ export default defineConfig
           {
             name: 'chrome',
             use: {
-              browserName: 'chromium',
-              viewport: null, 
-              launchOptions:
-              {
-                args: ['--start-maximized'], 
-              },
+              browserName: 'chromium'
             },
           },
-
+ 
     
         //{
         //  name: 'firefox',

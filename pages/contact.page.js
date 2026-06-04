@@ -2,8 +2,9 @@ import BasePage from './base.page.js';
 import commonLocators from '../pageobjects/commonLocators.js';
 import contactPageLocators from '../pageobjects/contactPageLocators.js';
 import OpportunityPageMethods from './opportunity.page.js';
+import CommonMethods from './commonmethods.js';
 
-export default class ContactPageMethods extends BasePage
+export default class ContactPageMethods extends CommonMethods
 {
     async navigateToContactsTab()
     {

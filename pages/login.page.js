@@ -2,8 +2,9 @@
 import BasePage from './base.page.js';
 import loginPageLocators from '../pageobjects/loginPageLocators.js';
 import { salesforceUsername, salesforcePassword } from '../config.js';
+import CommonMethods from './commonmethods.js';
 
-export default class LoginPageMethods extends BasePage
+export default class LoginPageMethods extends CommonMethods
 {
   
     homeUrlPattern =/lightning\/page\/home/; // Salesforce Home URL Pattern
@@ -15,8 +16,8 @@ export default class LoginPageMethods extends BasePage
   // Enter Username & Password
   async enterCredentials()
   {
-    await this.waitAndType(loginPageLocators.userNameInput,salesforceUsername );
-    await this.waitAndType(loginPageLocators.passwordInput,salesforcePassword);
+    await this.waitAndFill(loginPageLocators.userNameInput,salesforceUsername );
+    await this.waitAndFill(loginPageLocators.passwordInput,salesforcePassword);
     await this.waitAndClick(loginPageLocators.loginButton);
   }
   
@@ -24,16 +25,6 @@ export default class LoginPageMethods extends BasePage
   { 
     await this.waitAndClick(loginPageLocators.verifyButton);   // Click Verify Button
   }
-  /*
-  async clickHavingTrouble()
-  {
-    await this.waitAndClick(loginPageLocators.havingTrouble);
-  }
-
-  async clickDifferentVerificationMethod()
-  {
-    await this.waitAndClick(loginPageLocators.differentVerificationMethod);
-  }*/
 
   // Wait For Valid 6 Digit OTP
   async waitForSixDigitOtpFromInput()
@@ -59,12 +50,30 @@ export default class LoginPageMethods extends BasePage
   {
     console.log(' Starting OTP Flow...');
 
+      // ✅ Detect headless mode
+    const isHeadless = this.page.context().browser()?.options?.headless ?? true;
+    console.log(`🧪 Headless Mode: ${isHeadless}`);
+
     // Wait for OTP Screen
     await this.otpLocator.waitFor({state: 'visible',timeout: 60000});
     for ( let attempt = 1;attempt <= maxOtpAttempts;attempt++)
     {
       console.log(` OTP Attempt #${attempt}`);
       const otp = await this.waitForSixDigitOtpFromInput(); // Wait for OTP input
+          
+      // ✅ HEADLESS → TAKE FROM CONSOLE
+        if (isHeadless)
+        {
+          otp = await this.getOtpFromConsole();
+          console.log(` OTP (console): ${otp}`);
+        }
+        else
+        {
+          // ✅ HEADED → EXISTING FLOW
+          otp = await this.waitForSixDigitOtpFromInput();
+          console.log(` OTP (auto): ${otp}`);
+        }
+  
       console.log(` OTP Entered: ${otp}`);
       await this.otpLocator.fill(otp);   // Fill OTP
       await this.clickVerifyButton();  // Click Verify
