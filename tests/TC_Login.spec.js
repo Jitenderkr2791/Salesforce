@@ -12,7 +12,6 @@ test.describe.serial('Login to Salesforce', () => {
   let testData;
   let account ;
  
-  
     test.beforeAll(async ({ browser }) => 
       { test.setTimeout(120000);
         context = await browser.newContext();
@@ -62,7 +61,7 @@ test.describe.serial('Login to Salesforce', () => {
           await account.createAccountViaOpportunityCreation(testData);
       });
     
-    test.skip('Step 5 - create Contact via Standard Process', async () =>
+    test.only('Step 5 - create Contact via Standard Process', async () =>
        {    
             generateContactData();
             testData = getTestData();

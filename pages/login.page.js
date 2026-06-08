@@ -50,9 +50,9 @@ export default class LoginPageMethods extends CommonMethods
   {
     console.log(' Starting OTP Flow...');
 
-      // ✅ Detect headless mode
+      //  Detect headless mode
     const isHeadless = this.page.context().browser()?.options?.headless ?? true;
-    console.log(`🧪 Headless Mode: ${isHeadless}`);
+    console.log(` Headless Mode: ${isHeadless}`);
 
     // Wait for OTP Screen
     await this.otpLocator.waitFor({state: 'visible',timeout: 60000});
@@ -61,7 +61,7 @@ export default class LoginPageMethods extends CommonMethods
       console.log(` OTP Attempt #${attempt}`);
       const otp = await this.waitForSixDigitOtpFromInput(); // Wait for OTP input
           
-      // ✅ HEADLESS → TAKE FROM CONSOLE
+      //  HEADLESS → TAKE FROM CONSOLE
         if (isHeadless)
         {
           otp = await this.getOtpFromConsole();
@@ -69,7 +69,7 @@ export default class LoginPageMethods extends CommonMethods
         }
         else
         {
-          // ✅ HEADED → EXISTING FLOW
+          //  HEADED → EXISTING FLOW
           otp = await this.waitForSixDigitOtpFromInput();
           console.log(` OTP (auto): ${otp}`);
         }

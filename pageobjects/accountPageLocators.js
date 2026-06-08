@@ -1,7 +1,6 @@
 const  accountPageLocators = 
     { 
         accountNameInput: "(//input[@name='Name'])[1]",
-        saveButton: "//button[@name='SaveEdit']",
 
         OppoPagenewAccount :"//span[text()='New Account']",
         OppoPageAccountNameInput :"//h2[text()='New Account']/ancestor::div[contains(@class,'modal')]//input[@name='Name']",

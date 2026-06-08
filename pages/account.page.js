@@ -25,7 +25,7 @@ export default class AccountPageMethods extends CommonMethods
     async createNewAccount(testData)
     {   
         await this.navigationTab('Accounts');
-        await this.HeaderActions('New');
+        await this.clickNewButton();
         await this.enterAccountName(testData.account.accountName);
         await this.clickSaveButton();
         await this.verifyToastMessage("Account", testData.account.accountName);
@@ -51,7 +51,7 @@ export default class AccountPageMethods extends CommonMethods
     {
         const opportunity = new OpportunityPageMethods(this.page);
         await opportunity.navigateToOpportunityTab();
-        await this.HeaderActions('New');
+        await this.clickNewButton();
         await opportunity.enterOpportunityName(testData.opportunity.opportunityName);
         await this.waitAndClick(opportunityPageLocators.accountNameInput);
         await this.clickOppoPagenewAccount();

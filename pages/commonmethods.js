@@ -5,7 +5,7 @@ import readline from 'readline';
 
 class CommonMethods extends BasePage
 {
-     async verifyToastMessage(entityName, recordName)
+    async verifyToastMessage(entityName, recordName)
      {
             const toastLocator = await this.page.locator(commonLocators.toastMessage);
             await toastLocator.waitFor({ state: 'visible' });
@@ -18,7 +18,7 @@ class CommonMethods extends BasePage
                     throw new Error(` Toast message mismatch! Expected pattern: ${entityName} "${recordName}" was created  Actual: ${trimmedMessage}`);
                 }
                 console.log(" Toast verified:", trimmedMessage);
-     }
+    }
     
     async closeToastMessage()
         {
@@ -36,7 +36,7 @@ class CommonMethods extends BasePage
             {
                 console.log(" Toast close button not visible");
             }
-        }
+    }
 
 
     async printBrowserDetails(mode = 'Unknown') 
@@ -59,76 +59,69 @@ class CommonMethods extends BasePage
                 };
             });
             console.log('🌐 Browser Size + Zoom:', browserDetails);
-            console.log('=====================================\n');
-        }
+    }
 
     async setZoom(zoomPercent = 100) 
     {
-        await this.page.evaluate((zoom) => 
-        {
-        document.body.style.zoom = zoom + '%';
-        }, zoomPercent);
+        await this.page.evaluate((zoom) => { document.body.style.zoom = zoom + '%'; }, zoomPercent);
     }
 
-     async navigationTab(tabName) 
-    {
-            const page = this.page;
-            console.log(`🔍 Navigating to: ${tabName}`);
-            const navBar = page.locator('nav[aria-label="Global"]');
-            await navBar.waitFor({ state: 'visible' });
-            await page.waitForTimeout(1500);
+    async navigationTab(tabName) 
+    {      
+            console.log(` Navigating to: ${tabName}`);
+            const navBar = this.page.locator('nav[aria-label="Global"]');
             const navLinks = navBar.locator('a:visible');
             const count = await navLinks.count();
-            console.log(`Total visible nav items: ${count}`);
+            console.log(`Total visible nav items Found: ${count}`);
             for (let i = 0; i < count; i++) 
             {
-                let text = await navLinks.nth(i).innerText();
-                text = text?.trim().toLowerCase();
-                if (!text) continue;
-                console.log(`Nav Item ${i + 1}: ${text}`);
-                if (text === tabName.toLowerCase()) {
-                    console.log(`✅ Found ${tabName} → Clicking`);
+              let text = await navLinks.nth(i).innerText();
+              console.log(`Nav Item ${i + 1}: ${text}`);
+              if (text === tabName) 
+                {
+                    console.log(` Found ${tabName} → Clicking`);
                     await navLinks.nth(i).click();
                     return;
                 }
             }
-            console.log(`⚠️ ${tabName} not visible. Checking inside 'More' menu`);
-            const moreBtn = page.getByRole('button', { name: /more/i });
+            const moreBtn = this.page.getByRole('button', { name: /more/i });
             if (await moreBtn.isVisible()) 
                 {
                     await moreBtn.click();
-                    const moreItems = page.locator('one-app-nav-bar-item-root a:visible');
+                    const moreItems = this.page.locator('one-app-nav-bar-item-root a:visible');
                     await moreItems.first().waitFor({ state: 'visible' });
                     const moreCount = await moreItems.count();
-                    console.log(`📊 Total items inside More: ${moreCount}`);
+                    console.log(` Total items inside More Found: ${moreCount}`);
                     for (let i = 0; i < moreCount; i++) 
                     {
-                    let text = await moreItems.nth(i).innerText();
-                    text = text?.trim().toLowerCase();
-                    if (!text) continue;
-                    console.log(`More Item ${i + 1}: ${text}`);
-                    if (text === tabName.toLowerCase()) {
-                        console.log(`✅ Found ${tabName} in More → Clicking`);
-                        await moreItems.nth(i).click();
-                        return;
-                    }
+                        let text = await moreItems.nth(i).innerText();
+                        console.log(`More Item ${i + 1}: ${text}`);
+                        if (text === tabName) 
+                            {
+                                console.log(` Found ${tabName} in More → Clicking`);
+                                await moreItems.nth(i).click();
+                                return;
+                             }
+                     }
+                } 
+                else 
+                {
+                 console.log(` 'More' button not visible`);
                 }
-            } else {
-                console.log(`❌ 'More' button not visible`);
-            }
             // ❌ Final fail
-            throw new Error(`❌ Tab "${tabName}" not found in navigation bar`);
-        }
+            throw new Error(` Tab "${tabName}" not found in navigation bar`);
+    }
     
     async HeaderActions(value) 
         {
-            const page = this.page;
-            console.log(`\n🔍 Searching Header Action: ${value}`);
-            const header = page.locator('div.slds-page-header').first();
+            console.log(`\n Searching Header Action: ${value}`);
+            await this.page.waitForLoadState('domcontentloaded');
+            const header = this.page.locator('div.slds-page-header').first();
+            await expect(header).toBeVisible({ timeout: 15000 });
             await header.waitFor({ state: 'visible' });
             const items = header.locator('button, a, [title], [aria-label]');
             const count = await items.count();
-            console.log(`📊 Total header items: ${count}`);
+            console.log(` Total header items: ${count}`);
             for (let i = 0; i < count; i++) 
             {
                 const el = items.nth(i);
@@ -141,29 +134,29 @@ class CommonMethods extends BasePage
                 console.log(`Item ${i + 1}: ${text}`);
                 if (text.toLowerCase().includes(value.toLowerCase())) 
                 {
-                    console.log(`✅ Clicking: ${text}`);
+                    console.log(`Clicking: ${text}`);
                     await el.click();
                     return;
                 }
             }
-            throw new Error(`❌ "${value}" not found in header`);
-        }
+            throw new Error(` "${value}" not found in header`);
+    }
 
-        async getOtpFromConsole(timeout = 60000) 
+    async getOtpFromConsole(timeout = 60000) 
         {
-            console.log('🔐 Waiting for OTP input from console...');
+            console.log(' Waiting for OTP input from console...');
             const rl = readline.createInterface({input: process.stdin,output: process.stdout});
             const otpPromise = new Promise((resolve) => 
                 {
-                  rl.question('👉 Enter OTP: ', (otp) => 
+                  rl.question(' Enter OTP: ', (otp) => 
                     {
                         rl.close();
                         resolve(otp.trim());
                         });
                 });
-            const timeoutPromise = new Promise((_, reject) =>setTimeout(() => reject(new Error('⏰ OTP input timeout')), timeout));
+            const timeoutPromise = new Promise((_, reject) =>setTimeout(() => reject(new Error(' OTP input timeout')), timeout));
             return Promise.race([otpPromise, timeoutPromise]);
-        }
+    }
     
     async selectValueFromDropdown(inputSelector, optionSelector, value) 
     {
@@ -212,6 +205,11 @@ class CommonMethods extends BasePage
         //await this.clickStandardButton('Opportunity', 'SaveEdit');
         //await this.clickStandardButton('Opportunity', 'SaveAndNew');
         //await this.clickStandardButton('Opportunity', 'CancelEdit');
+    }
+
+    async clickNewButton()  
+    {
+        await this.HeaderActions('New');
     }
 }
 export default CommonMethods;

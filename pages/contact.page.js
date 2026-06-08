@@ -8,13 +8,8 @@ export default class ContactPageMethods extends CommonMethods
 {
     async navigateToContactsTab()
     {
-         await this.navigateToTab('Contacts');
+        await this.navigationTab('Contacts');
     }
-    
-    async clickNewButton()  
-        {
-          await this.waitAndClick(contactPageLocators.contactNewButton);
-        }
 
     async enterLastName(lastName)
     {
@@ -23,9 +18,8 @@ export default class ContactPageMethods extends CommonMethods
 
     async clickSaveButton()
     {        
-        await this.waitAndClick(contactPageLocators.saveButton);
+        await this.clickStandardButton('Contact','SaveEdit');
     }
-
 
     async createNewContact(testData)
     {   
@@ -38,6 +32,5 @@ export default class ContactPageMethods extends CommonMethods
         await this.verifyToastMessage("Contact", testData.contact.lastName);
         await this.closeToastMessage();
     }
-
 
 }
