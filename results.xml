@@ -1,64 +1,158 @@
-<testsuites id="" name="" tests="1" failures="0" skipped="0" errors="1" time="166.63194400000015">
-<testsuite name="TC_Login.spec.js" timestamp="2026-06-08T12:51:06.776Z" hostname="chrome" tests="1" failures="0" skipped="0" time="0.005" errors="1">
-<testcase name="Login to Salesforce › Step 5 - create Contact via Standard Process" classname="TC_Login.spec.js" time="0.005">
+<testsuites id="" name="" tests="5" failures="0" skipped="2" errors="1" time="120.122892">
+<testsuite name="TC_Login.spec.js" timestamp="2026-06-09T04:51:58.378Z" hostname="chrome" tests="5" failures="0" skipped="2" time="72.839" errors="1">
+<testcase name="Login to Salesforce › Step 1 - create new account via Standard Process" classname="TC_Login.spec.js" time="11.548">
 <system-out>
 <![CDATA[ Starting Salesforce Login (Hybrid Mode)...
 Entered value: jk885827@resourceful-impala-ehughf.com
 Entered value: Test@12345678
 Authenticator page detected. Waiting for mobile device approval...
 Still waiting for approval. 60s remaining...
-Still waiting for approval. 50s remaining...
-Still waiting for approval. 40s remaining...
-Still waiting for approval. 30s remaining...
-OTP page detected. Starting OTP flow...
- Starting OTP Flow...
- Headless Mode: true
- OTP Attempt #1
- Waiting for OTP input from console...
- Enter OTP: 
-[[ATTACHMENT|test-results\TC_Login-Login-to-Salesfor-f23ae-ontact-via-Standard-Process-chrome\test-failed-1.png]]
+ Waiting for auth page...
+Login successful: https://resourceful-impala-ehughf-dev-ed.trailblaze.lightning.force.com/lightning/page/home
+Current URL: https://resourceful-impala-ehughf-dev-ed.trailblaze.lightning.force.com/lightning/page/home
+ Login successfully.
+Account Data Generated
+ Navigating to: Accounts
+Total visible nav items Found: 29
+Nav Item 1: Home
+Nav Item 2: Contacts
+Nav Item 3: Contacts List
+Nav Item 4: Accounts
+ Found Accounts → Clicking
 
-[[ATTACHMENT|test-results\TC_Login-Login-to-Salesfor-f23ae-ontact-via-Standard-Process-chrome\error-context.md]]
-
-[[ATTACHMENT|test-results\TC_Login-Login-to-Salesfor-f23ae-ontact-via-Standard-Process-chrome\error-context.md]]
+ Searching Header Action: New
+ Total header items: 27
+Item 1: Accounts
+Item 2: data-provider
+Item 3: picker-data-provider
+Item 4: picker-data-provider
+Item 5: Select a List View: Accounts
+Item 6: This list is pinned.
+Item 7: New
+Clicking: New
+Entered value: Account_Caleb_14262
+ Actual Toast Message: Account "Account_Caleb_14262" was created.
+ Toast verified: Account "Account_Caleb_14262" was created.
+ Closing toast message...
+ Close button clicked
+ Toast closed successfully
 ]]>
 </system-out>
-<error message="&quot;beforeAll&quot; hook timeout of 120000ms exceeded." type="Error">
-<![CDATA[  [chrome] › TC_Login.spec.js:64:10 › Login to Salesforce › Step 5 - create Contact via Standard Process 
+</testcase>
+<testcase name="Login to Salesforce › Step 2 - create new opportunity via Standard Process" classname="TC_Login.spec.js" time="28.691">
+<system-out>
+<![CDATA[Opportunity Data Generated
+ Navigating to: Opportunities
+Total visible nav items Found: 29
+Nav Item 1: Home
+Nav Item 2: Contacts
+Nav Item 3: Contacts List
+Nav Item 4: Accounts
+Nav Item 5: Accounts List
+Nav Item 6: Leads
+Nav Item 7: Leads List
+Nav Item 8: Tasks
+Nav Item 9: Tasks List
+Nav Item 10: Files
+Nav Item 11: Files List
+Nav Item 12: Opportunities
+ Found Opportunities → Clicking
 
-    "beforeAll" hook timeout of 120000ms exceeded.
+ Searching Header Action: New
+ Total header items: 25
+Item 1: Opportunities
+Item 2: data-provider
+Item 3: picker-data-provider
+Item 4: picker-data-provider
+Item 5: Select a List View: Opportunities
+Item 6: This list is pinned.
+Item 7: New
+Clicking: New
+Entered value: Opportunity_Neoma_22900
+Entered value: Account_Caleb_14262
+Entered value: 16/06/2026
+Clicked dropdown: button[aria-label='Stage']
+Total options found: 11
+Option 1: --None--
+Option 2: Prospecting
+Selected: Prospecting
+ Actual Toast Message: Opportunity "Opportunity_Neoma_22900" was created.
+ Toast verified: Opportunity "Opportunity_Neoma_22900" was created.
+ Closing toast message...
+ Close button clicked
+ Toast closed successfully
+]]>
+</system-out>
+</testcase>
+<testcase name="Login to Salesforce › Step 3 - create Opportunity via Account related tab" classname="TC_Login.spec.js" time="32.6">
+<system-out>
+<![CDATA[ Navigating to: Accounts
+Total visible nav items Found: 29
+Nav Item 1: Home
+Nav Item 2: Contacts
+Nav Item 3: Contacts List
+Nav Item 4: Accounts
+ Found Accounts → Clicking
+Entered value: Account_Caleb_14262
+Entered value: Opportunity_Neoma_22900
+Entered value: 16/06/2026
+Clicked dropdown: button[aria-label='Stage']
+Total options found: 11
+Option 1: --None--
+Option 2: Prospecting
+Selected: Prospecting
 
-      13 |   let account ;
-      14 |  
-    > 15 |     test.beforeAll(async ({ browser }) => 
-         |          ^
-      16 |       { test.setTimeout(120000);
-      17 |         context = await browser.newContext();
-      18 |         page = await context.newPage();
-        at C:\Users\MindRuby\OneDrive - MIND RUBY TECHNOLOGIES LLP\Desktop\Salesforce\tests\TC_Login.spec.js:15:10
+[[ATTACHMENT|test-results\TC_Login-Login-to-Salesfor-09164-ity-via-Account-related-tab-chrome\test-failed-1.png]]
 
-    Error:  OTP input timeout
+[[ATTACHMENT|test-results\TC_Login-Login-to-Salesfor-09164-ity-via-Account-related-tab-chrome\error-context.md]]
 
-       at ..\pages\commonmethods.js:157
+[[ATTACHMENT|test-results\TC_Login-Login-to-Salesfor-09164-ity-via-Account-related-tab-chrome\error-context.md]]
+]]>
+</system-out>
+<error message="Test timeout of 30000ms exceeded." type="Error">
+<![CDATA[  [chrome] › TC_Login.spec.js:48:5 › Login to Salesforce › Step 3 - create Opportunity via Account related tab 
 
-      155 |                         });
-      156 |                 });
-    > 157 |             const timeoutPromise = new Promise((_, reject) =>setTimeout(() => reject(new Error(' OTP input timeout')), timeout));
-          |                                                                                      ^
-      158 |             return Promise.race([otpPromise, timeoutPromise]);
-      159 |     }
-      160 |     
-        at Timeout._onTimeout (C:\Users\MindRuby\OneDrive - MIND RUBY TECHNOLOGIES LLP\Desktop\Salesforce\pages\commonmethods.js:157:86)
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.click: Target page, context or browser has been closed
+    Call log:
+      - waiting for locator('//li[contains(@data-target-selection-name,"Opportunity.SaveEdit")]//button')
+        - locator resolved to <button type="button" part="button" name="SaveEdit" kx-type="ripple" lwc-40a585din3p="" aria-disabled="false" kx-scope="button-brand" class="slds-button slds-button_brand">Save</button>
+      - attempting click action
+        - waiting for element to be visible, enabled and stable
+
+
+       at ..\pages\commonmethods.js:204
+
+      202 |         await this.page.waitForLoadState('domcontentloaded');
+      203 |         await this.page.waitForTimeout(1000);
+    > 204 |         await this.page.locator(locator).click();
+          |                                          ^
+      205 |         //await this.clickStandardButton('Opportunity', 'SaveEdit');
+      206 |         //await this.clickStandardButton('Opportunity', 'SaveAndNew');
+      207 |         //await this.clickStandardButton('Opportunity', 'CancelEdit');
+        at OpportunityPageMethods.clickStandardButton (C:\Users\MindRuby\OneDrive - MIND RUBY TECHNOLOGIES LLP\Desktop\Salesforce\pages\commonmethods.js:204:42)
+        at OpportunityPageMethods.clickSaveButton (C:\Users\MindRuby\OneDrive - MIND RUBY TECHNOLOGIES LLP\Desktop\Salesforce\pages\opportunity.page.js:38:9)
+        at OpportunityPageMethods.createNewOpportunityViaAccountRelatedTab (C:\Users\MindRuby\OneDrive - MIND RUBY TECHNOLOGIES LLP\Desktop\Salesforce\pages\opportunity.page.js:77:9)
+        at C:\Users\MindRuby\OneDrive - MIND RUBY TECHNOLOGIES LLP\Desktop\Salesforce\tests\TC_Login.spec.js:52:13
 
     attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
-    ..\test-results\TC_Login-Login-to-Salesfor-f23ae-ontact-via-Standard-Process-chrome\test-failed-1.png
+    ..\test-results\TC_Login-Login-to-Salesfor-09164-ity-via-Account-related-tab-chrome\test-failed-1.png
     ────────────────────────────────────────────────────────────────────────────────────────────────
 
-    Error Context: ..\test-results\TC_Login-Login-to-Salesfor-f23ae-ontact-via-Standard-Process-chrome\error-context.md
+    Error Context: ..\test-results\TC_Login-Login-to-Salesfor-09164-ity-via-Account-related-tab-chrome\error-context.md
 
-    Error Context: ..\test-results\TC_Login-Login-to-Salesfor-f23ae-ontact-via-Standard-Process-chrome\error-context.md
+    Error Context: ..\test-results\TC_Login-Login-to-Salesfor-09164-ity-via-Account-related-tab-chrome\error-context.md
 ]]>
 </error>
+</testcase>
+<testcase name="Login to Salesforce › Step 4 - create Account Created Via Opportunity" classname="TC_Login.spec.js">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Login to Salesforce › Step 5 - create Contact via Standard Process" classname="TC_Login.spec.js">
+<skipped>
+</skipped>
 </testcase>
 </testsuite>
 </testsuites>

@@ -14,28 +14,26 @@ import { defineConfig, devices } from '@playwright/test';
 export default defineConfig
 ({
       testDir: './tests',
-      fullyParallel: true,                            /* Run tests in files in parallel */
-      forbidOnly: !!process.env.CI,                   /* Fail the build on CI if you accidentally left test.only in the source code. */
-      retries: process.env.CI ? 2 : 0,                /* Retry on CI only */
-      workers: process.env.CI ? 1 : undefined,       /* Opt out of parallel tests on CI. */
+      fullyParallel: true,                           
+      forbidOnly: !!process.env.CI,                 
+      retries: process.env.CI ? 2 : 0,               
+      workers: process.env.CI ? 1 : undefined,       
      
-      reporter:[ ['html'],['junit', { outputFile: 'results.xml' }], ['allure-playwright'] ],       /* Reporter to use. See https://playwright.dev/docs/test-reporters */
+      reporter:[ ['html'],['junit', { outputFile: 'results.xml' }], ['allure-playwright'] ],   
                                                                 
-      /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
       use: {
         browserName: 'chromium',
 
-         headless: process.env.CI ? true : process.env.HEADLESS === 'true',     //  CONTROL FROM ENV //$env:HEADLESS="true"; npx playwright test
+         headless: process.env.CI ? true : process.env.HEADLESS === 'false',       //$env:HEADLESS="true"; npx playwright test
          viewport: process.env.CI ? { width: 1920, height: 1080 }: process.env.HEADLESS === 'true'? { width: 1920, height: 1080 }: null,
-      // ✅ MAXIMIZE IN HEADED, FIX SIZE IN HEADLESS
-         launchOptions: { args: ['--start-maximized']},  // Start browser maximized (works in headed mode, safe to keep in headless)
-
-        /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
+      
+         launchOptions: { args: ['--start-maximized']}, 
+      
         trace: 'on-first-retry',
-        slowMo: 100,                   // Slow down actions by 100ms to better observe test execution
-        screenshot: 'only-on-failure',      // Capture screenshots only on test failures
+        slowMo: 100,                  
+        screenshot: 'only-on-failure',      
         video: 'retain-on-failure', 
-          }, // Record video only for failed tests},
+          }, 
       
 
   /* Configure projects for major browsers */
@@ -47,7 +45,6 @@ export default defineConfig
               browserName: 'chromium'
             },
           },
- 
     
         //{
         //  name: 'firefox',

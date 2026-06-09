@@ -32,5 +32,4 @@ export default class ContactPageMethods extends CommonMethods
         await this.verifyToastMessage("Contact", testData.contact.lastName);
         await this.closeToastMessage();
     }
-
 }

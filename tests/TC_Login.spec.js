@@ -19,8 +19,8 @@ test.describe.serial('Login to Salesforce', () => {
         login = new LoginPageMethods(page);
         await page.goto(salesforceUrl);
         await login.loginSmartHybrid({maxOtpAttempts: 1, authTimeout: 60000});
-        await login.setZoom(80);
-        await login.printBrowserDetails(process.env.HEADLESS ? 'Headless' : 'Headed');
+       // await login.setZoom(80);
+       // await login.printBrowserDetails(process.env.HEADLESS ? 'Headless' : 'Headed');
         console.log(' Login successfully.');
       });
 
@@ -61,7 +61,7 @@ test.describe.serial('Login to Salesforce', () => {
           await account.createAccountViaOpportunityCreation(testData);
       });
     
-    test.only('Step 5 - create Contact via Standard Process', async () =>
+    test('Step 5 - create Contact via Standard Process', async () =>
        {    
             generateContactData();
             testData = getTestData();

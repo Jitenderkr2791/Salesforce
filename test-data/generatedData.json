@@ -1,16 +1,11 @@
 {
   "account": {
-    "accountName": "Account_Easter_71758"
+    "accountName": "Account_Caleb_14262"
   },
   "opportunity": {
-    "opportunityName": "Opportunity_Lorena_22823",
-    "accountName": "Account_Easter_71758",
+    "opportunityName": "Opportunity_Neoma_22900",
+    "accountName": "Account_Caleb_14262",
     "closeDate": "16/06/2026",
     "stage": "Prospecting"
-  },
-  "contact": {
-    "firstName": "Melba",
-    "accountName": "Account_Easter_71758",
-    "lastName": "Nienow"
   }
 }

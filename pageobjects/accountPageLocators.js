@@ -7,3 +7,4 @@ const  accountPageLocators =
         OppoPageNewAccountSaveButton :"//h2[text()='New Account']/ancestor::div[contains(@class,'modal')]//button[@name='SaveEdit']",
     };
 export default accountPageLocators;
+

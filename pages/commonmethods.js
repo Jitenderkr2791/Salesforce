@@ -119,20 +119,20 @@ class CommonMethods extends BasePage
             const header = this.page.locator('div.slds-page-header').first();
             await expect(header).toBeVisible({ timeout: 15000 });
             await header.waitFor({ state: 'visible' });
-            const items = header.locator('button, a, [title], [aria-label]');
+            const items = header.locator('button, a, [title], [aria-label],[name]');
             const count = await items.count();
             console.log(` Total header items: ${count}`);
             for (let i = 0; i < count; i++) 
             {
                 const el = items.nth(i);
                 let text =
-                    await el.innerText() ||
-                    await el.getAttribute('title') ||
-                    await el.getAttribute('aria-label');
-                text = text?.trim();
+                    (await el.innerText().catch(() => '')) ||
+                    (await el.getAttribute('title').catch(() => '')) ||
+                    (await el.getAttribute('aria-label').catch(() => ''))||
+                    (await el.getAttribute('name').catch(() => ''));
                 if (!text) continue;
                 console.log(`Item ${i + 1}: ${text}`);
-                if (text.toLowerCase().includes(value.toLowerCase())) 
+                if (text.includes(value)) 
                 {
                     console.log(`Clicking: ${text}`);
                     await el.click();
