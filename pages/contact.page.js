@@ -27,7 +27,7 @@ export default class ContactPageMethods extends CommonMethods
         await this.clickNewButton();
         await this.enterLastName(testData.contact.lastName);
         const opportunity = new OpportunityPageMethods(this.page);
-        await opportunity.enterAccountName(testData.account.accountName);
+       // await opportunity.enterAccountName(testData.account.accountName);
         await this.clickSaveButton();
         await this.verifyToastMessage("Contact", testData.contact.lastName);
         await this.closeToastMessage();

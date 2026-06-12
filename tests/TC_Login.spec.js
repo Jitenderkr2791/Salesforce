@@ -18,9 +18,10 @@ test.describe.serial('Login to Salesforce', () => {
         page = await context.newPage();
         login = new LoginPageMethods(page);
         await page.goto(salesforceUrl);
-        await login.loginSmartHybrid({maxOtpAttempts: 1, authTimeout: 60000});
-       // await login.setZoom(80);
-       // await login.printBrowserDetails(process.env.HEADLESS ? 'Headless' : 'Headed');
+        await login.loginSmartHybrid({maxOtpAttempts: 3, authTimeout: 120000});
+       // await login.selectApp(Jitender);
+        await login.setZoom(100);
+        await login.printBrowserDetails(process.env.HEADLESS ? 'Headless' : 'Headed');
         console.log(' Login successfully.');
       });
 

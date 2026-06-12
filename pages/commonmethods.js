@@ -70,6 +70,7 @@ class CommonMethods extends BasePage
     {      
             console.log(` Navigating to: ${tabName}`);
             const navBar = this.page.locator('nav[aria-label="Global"]');
+            await navBar.waitFor({ state: 'visible', timeout: 50000 });
             const navLinks = navBar.locator('a:visible');
             const count = await navLinks.count();
             console.log(`Total visible nav items Found: ${count}`);
@@ -140,22 +141,6 @@ class CommonMethods extends BasePage
                 }
             }
             throw new Error(` "${value}" not found in header`);
-    }
-
-    async getOtpFromConsole(timeout = 60000) 
-        {
-            console.log(' Waiting for OTP input from console...');
-            const rl = readline.createInterface({input: process.stdin,output: process.stdout});
-            const otpPromise = new Promise((resolve) => 
-                {
-                  rl.question(' Enter OTP: ', (otp) => 
-                    {
-                        rl.close();
-                        resolve(otp.trim());
-                        });
-                });
-            const timeoutPromise = new Promise((_, reject) =>setTimeout(() => reject(new Error(' OTP input timeout')), timeout));
-            return Promise.race([otpPromise, timeoutPromise]);
     }
     
     async selectValueFromDropdown(inputSelector, optionSelector, value) 

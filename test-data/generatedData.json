@@ -1,11 +1,16 @@
 {
   "account": {
-    "accountName": "Account_Caleb_14262"
+    "accountName": "Account_Delilah_59400"
   },
   "opportunity": {
-    "opportunityName": "Opportunity_Neoma_22900",
-    "accountName": "Account_Caleb_14262",
+    "opportunityName": "Opportunity_Abel_9136",
+    "accountName": "Account_Delilah_59400",
     "closeDate": "16/06/2026",
     "stage": "Prospecting"
+  },
+  "contact": {
+    "firstName": "Meredith",
+    "accountName": "Account_Delilah_59400",
+    "lastName": "Witting-McClure"
   }
 }

@@ -33,7 +33,7 @@ export default class OpportunityPageMethods extends CommonMethods
     }
 
     
-      async clickSaveButton()
+    async clickSaveButton()
       {
         await this.clickStandardButton('Opportunity', 'SaveEdit');
       }

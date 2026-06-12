@@ -11,6 +11,10 @@ import { defineConfig, devices } from '@playwright/test';
 /**
  * @see https://playwright.dev/docs/test-configuration
  */
+
+const isCI = !!process.env.CI;
+const isHeadless = process.env.HEADLESS === 'true'; // ONLY true = headless
+
 export default defineConfig
 ({
       testDir: './tests',
@@ -20,21 +24,19 @@ export default defineConfig
       workers: process.env.CI ? 1 : undefined,       
      
       reporter:[ ['html'],['junit', { outputFile: 'results.xml' }], ['allure-playwright'] ],   
-                                                                
-      use: {
-        browserName: 'chromium',
 
-         headless: process.env.CI ? true : process.env.HEADLESS === 'false',       //$env:HEADLESS="true"; npx playwright test
-         viewport: process.env.CI ? { width: 1920, height: 1080 }: process.env.HEADLESS === 'true'? { width: 1920, height: 1080 }: null,
-      
-         launchOptions: { args: ['--start-maximized']}, 
-      
-        trace: 'on-first-retry',
-        slowMo: 100,                  
-        screenshot: 'only-on-failure',      
-        video: 'retain-on-failure', 
+      use: {
+              headless: isCI ? true : isHeadless,   // ✅ FIXED LOGIC
+              viewport: isHeadless? { width: 1920, height: 1080 }: null,    // ✅ VIEWPORT LOGIC
+              browserName: 'chromium',
+              launchOptions: { args: ['--start-maximized']}, 
+            
+              trace: 'on-first-retry',
+              slowMo: isHeadless ? 0 : 100,                  
+              screenshot: 'only-on-failure',      
+              video: 'retain-on-failure', 
           }, 
-      
+          
 
   /* Configure projects for major browsers */
     projects:

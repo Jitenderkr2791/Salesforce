@@ -8,7 +8,7 @@ const environments =
       dev: 
       {
         username: process.env.SF_DEV_USERNAME || 'jk885827@resourceful-impala-ehughf.com',
-        password: process.env.SF_DEV_PASSWORD || 'Test@12345678',
+        password: process.env.SF_DEV_PASSWORD || 'Test@1234',
         url: 'https://login.salesforce.com/?locale=in'
       },
       stage: 
