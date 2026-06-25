@@ -1,18 +1,18 @@
-<testsuites id="" name="" tests="5" failures="0" skipped="0" errors="0" time="74.08514">
-<testsuite name="TC_Login.spec.js" timestamp="2026-06-12T12:31:49.917Z" hostname="chrome" tests="5" failures="0" skipped="0" time="36.132" errors="0">
-<testcase name="Login to Salesforce › Step 1 - create new account via Standard Process" classname="TC_Login.spec.js" time="8.236">
+<testsuites id="" name="" tests="5" failures="0" skipped="0" errors="1" time="97.61004799999999">
+<testsuite name="TC_Login.spec.js" timestamp="2026-06-12T13:09:25.321Z" hostname="chrome" tests="5" failures="0" skipped="0" time="61.126" errors="1">
+<testcase name="Login to Salesforce › Step 1 - create new account via Standard Process" classname="TC_Login.spec.js" time="6.934">
 <system-out>
 <![CDATA[ Starting Salesforce Login...
 Entered value: jk885827@resourceful-impala-ehughf.com
 Entered value: Test@1234
-🕒 6:02:06 pm
+🕒 6:39:39 pm
  Title: Check Your Mobile Device | Salesforce
  Page Type: auth
 ---------------------------
  Waiting for mobile approval...
-Approved via mobile but redirected to Page: https://resourceful-impala-ehughf-dev-ed.trailblaze.lightning.force.com/lightning/_classic/%2Fapp%2Fmgmt%2Fapplauncher%2FappLauncher.apexp
+Approved via mobile but redirected to Page: https://resourceful-impala-ehughf-dev-ed.trailblaze.file.force.com/secur/contentDoor?startURL=https%3A%2F%2Fresourceful-impala-ehughf-dev-ed.trailblaze.lightning.force.com%2Flightning%2F_classic%2F%252Fapp%252Fmgmt%252Fapplauncher%252FappLauncher.apexp&sid=00DdL00000h1DVX%21AQEAQCzvGMqbPty2Sg0pfW0VQa9Bh__pEKGkPoI3xoR6aGtI2pu7N.8FG4vQ.s73ogwOH63Sq6EsrAX6dAevp9et9gJaLjtS&skipRedirect=1&lm=eyJlbmMiOiJBMjU2R0NNIiwiYXVkIjoiMDBEZEwwMDAwMGgxRFZYIiwia2lkIjoie1widFwiOlwiMDBEZEwwMDAwMGgxRFZYXCIsXCJ2XCI6XCIwMkdkTDAwMDAwNVZZSWZcIixcImFcIjpcImNvbnRlbnRkb29ydXNlcnRyYW5zaWVudGtleWVuY3J5cHRcIixcInVcIjpcIjAwNWRMMDAwMDFhWU5TblwifSIsImNyaXQiOlsiaWF0Il0sImlhdCI6MTc4MTI2OTc4NzI1NSwiZXhwIjowfQ%3D%3D..U1XEK140hCIw8YPi.wEhFmeN53Hif8AFGOtfsfA%3D%3D.bAcKE3kQPxgv1t6vsuWOnA%3D%3D
  Waiting for correct page...
-🕒 6:02:26 pm
+🕒 6:39:59 pm
  Title: App Launcher | Salesforce
  Page Type: app
 ---------------------------
@@ -54,16 +54,16 @@ Item 5: Select a List View: Accounts
 Item 6: This list is pinned.
 Item 7: New
 Clicking: New
-Entered value: Account_Gerardo_28197
- Actual Toast Message: Account "Account_Gerardo_28197" was created.
- Toast verified: Account "Account_Gerardo_28197" was created.
+Entered value: Account_Rico_36187
+ Actual Toast Message: Account "Account_Rico_36187" was created.
+ Toast verified: Account "Account_Rico_36187" was created.
  Closing toast message...
  Close button clicked
  Toast closed successfully
 ]]>
 </system-out>
 </testcase>
-<testcase name="Login to Salesforce › Step 2 - create new opportunity via Standard Process" classname="TC_Login.spec.js" time="7.216">
+<testcase name="Login to Salesforce › Step 2 - create new opportunity via Standard Process" classname="TC_Login.spec.js" time="7.938">
 <system-out>
 <![CDATA[Opportunity Data Generated
  Navigating to: Opportunities
@@ -78,27 +78,27 @@ Item 1: Accounts
 Item 2: data-provider
 Item 3: picker-data-provider
 Item 4: picker-data-provider
-Item 5: Select a List View: Opportunities
+Item 5: Select a List View: Accounts
 Item 6: This list is pinned.
 Item 7: New
 Clicking: New
-Entered value: Opportunity_Earl_87427
-Entered value: Account_Gerardo_28197
+Entered value: Opportunity_Brittany_40957
+Entered value: Account_Rico_36187
 Entered value: 16/06/2026
 Clicked dropdown: button[aria-label='Stage']
 Total options found: 11
 Option 1: --None--
 Option 2: Prospecting
 Selected: Prospecting
- Actual Toast Message: Opportunity "Opportunity_Earl_87427" was created.
- Toast verified: Opportunity "Opportunity_Earl_87427" was created.
+ Actual Toast Message: Opportunity "Opportunity_Brittany_40957" was created.
+ Toast verified: Opportunity "Opportunity_Brittany_40957" was created.
  Closing toast message...
  Close button clicked
  Toast closed successfully
 ]]>
 </system-out>
 </testcase>
-<testcase name="Login to Salesforce › Step 3 - create Opportunity via Account related tab" classname="TC_Login.spec.js" time="6.6">
+<testcase name="Login to Salesforce › Step 3 - create Opportunity via Account related tab" classname="TC_Login.spec.js" time="6.423">
 <system-out>
 <![CDATA[ Navigating to: Accounts
 Total visible nav items Found: 29
@@ -113,23 +113,23 @@ Nav Item 8: Files
 Nav Item 9: Files List
 Nav Item 10: Accounts
  Found Accounts → Clicking
-Entered value: Account_Gerardo_28197
-Entered value: Opportunity_Earl_87427
+Entered value: Account_Rico_36187
+Entered value: Opportunity_Brittany_40957
 Entered value: 16/06/2026
 Clicked dropdown: button[aria-label='Stage']
 Total options found: 11
 Option 1: --None--
 Option 2: Prospecting
 Selected: Prospecting
- Actual Toast Message: Opportunity "Opportunity_Earl_87427" was created.
- Toast verified: Opportunity "Opportunity_Earl_87427" was created.
+ Actual Toast Message: Opportunity "Opportunity_Brittany_40957" was created.
+ Toast verified: Opportunity "Opportunity_Brittany_40957" was created.
  Closing toast message...
  Close button clicked
  Toast closed successfully
 ]]>
 </system-out>
 </testcase>
-<testcase name="Login to Salesforce › Step 4 - create Account Created Via Opportunity" classname="TC_Login.spec.js" time="9.392">
+<testcase name="Login to Salesforce › Step 4 - create Account Created Via Opportunity" classname="TC_Login.spec.js" time="9.58">
 <system-out>
 <![CDATA[Account Data Generated
 Opportunity Data Generated
@@ -145,14 +145,14 @@ Item 1: Accounts
 Item 2: data-provider
 Item 3: picker-data-provider
 Item 4: picker-data-provider
-Item 5: Select a List View: Opportunities
+Item 5: Select a List View: Accounts
 Item 6: This list is pinned.
 Item 7: New
 Clicking: New
-Entered value: Opportunity_Abel_9136
-Entered value: Account_Delilah_59400
- Actual Toast Message: Account "Account_Delilah_59400" was created.
- Toast verified: Account "Account_Delilah_59400" was created.
+Entered value: Opportunity_Quinten_13443
+Entered value: Account_Ayana_50895
+ Actual Toast Message: Account "Account_Ayana_50895" was created.
+ Toast verified: Account "Account_Ayana_50895" was created.
  Closing toast message...
  Close button clicked
  Toast closed successfully
@@ -162,15 +162,15 @@ Total options found: 11
 Option 1: --None--
 Option 2: Prospecting
 Selected: Prospecting
- Actual Toast Message: Opportunity "Opportunity_Abel_9136" was created.
- Toast verified: Opportunity "Opportunity_Abel_9136" was created.
+ Actual Toast Message: Opportunity "Opportunity_Quinten_13443" was created.
+ Toast verified: Opportunity "Opportunity_Quinten_13443" was created.
  Closing toast message...
  Close button clicked
  Toast closed successfully
 ]]>
 </system-out>
 </testcase>
-<testcase name="Login to Salesforce › Step 5 - create Contact via Standard Process" classname="TC_Login.spec.js" time="4.688">
+<testcase name="Login to Salesforce › Step 5 - create Contact via Standard Process" classname="TC_Login.spec.js" time="30.251">
 <system-out>
 <![CDATA[Contact Data Generated
  Navigating to: Contacts
@@ -199,14 +199,48 @@ Item 5: Select a List View: Opportunities
 Item 6: This list is pinned.
 Item 7: New
 Clicking: New
-Entered value: Witting-McClure
- Actual Toast Message: Contact "Witting-McClure" was created.
- Toast verified: Contact "Witting-McClure" was created.
- Closing toast message...
- Close button clicked
- Toast closed successfully
+
+[[ATTACHMENT|test-results\TC_Login-Login-to-Salesfor-f23ae-ontact-via-Standard-Process-chrome\test-failed-1.png]]
+
+[[ATTACHMENT|test-results\TC_Login-Login-to-Salesfor-f23ae-ontact-via-Standard-Process-chrome\error-context.md]]
+
+[[ATTACHMENT|test-results\TC_Login-Login-to-Salesfor-f23ae-ontact-via-Standard-Process-chrome\error-context.md]]
 ]]>
 </system-out>
+<error message="Test timeout of 30000ms exceeded." type="Error">
+<![CDATA[  [chrome] › TC_Login.spec.js:65:5 › Login to Salesforce › Step 5 - create Contact via Standard Process 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.waitFor: Target page, context or browser has been closed
+    Call log:
+      - waiting for locator('//input[@name=\'lastName\']') to be visible
+
+
+       at ..\pages\base.page.js:71
+
+      69 |         await this.waitForPageStable();
+      70 |         const element = this.page.locator(selector);
+    > 71 |         await element.waitFor({ state: 'visible', timeout: 30000 });
+         |                       ^
+      72 |         await element.scrollIntoViewIfNeeded();
+      73 |         await element.click();
+      74 |         await element.fill(text);
+        at ContactPageMethods.waitAndFill (C:\Users\Jitender.Kumar\OneDrive - MIND RUBY TECHNOLOGIES LLP\Desktop\Salesforce\pages\base.page.js:71:23)
+        at ContactPageMethods.waitAndType (C:\Users\Jitender.Kumar\OneDrive - MIND RUBY TECHNOLOGIES LLP\Desktop\Salesforce\pages\base.page.js:80:9)
+        at ContactPageMethods.enterLastName (C:\Users\Jitender.Kumar\OneDrive - MIND RUBY TECHNOLOGIES LLP\Desktop\Salesforce\pages\contact.page.js:16:9)
+        at ContactPageMethods.createNewContact (C:\Users\Jitender.Kumar\OneDrive - MIND RUBY TECHNOLOGIES LLP\Desktop\Salesforce\pages\contact.page.js:28:9)
+        at C:\Users\Jitender.Kumar\OneDrive - MIND RUBY TECHNOLOGIES LLP\Desktop\Salesforce\tests\TC_Login.spec.js:70:13
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\test-results\TC_Login-Login-to-Salesfor-f23ae-ontact-via-Standard-Process-chrome\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\test-results\TC_Login-Login-to-Salesfor-f23ae-ontact-via-Standard-Process-chrome\error-context.md
+
+    Error Context: ..\test-results\TC_Login-Login-to-Salesfor-f23ae-ontact-via-Standard-Process-chrome\error-context.md
+]]>
+</error>
 </testcase>
 </testsuite>
 </testsuites>

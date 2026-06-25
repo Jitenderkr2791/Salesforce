@@ -1,7 +1,7 @@
 const opportunityPageLocators =
 { 
         opportunityNameInput: "//h2[text()='New Opportunity']/ancestor::div[contains(@class,'modal')]//label[contains(.,'Opportunity Name')]/following::input[1]",
-        accountNameInput: "//h2[text()='New Opportunity']/ancestor::div[contains(@class,'modal')]//label[contains(.,'Account Name')]/following::input[1]",
+        accountNameInput: "input[role='combobox'][aria-label='Account Name']",
         closeDateInput: "//h2[text()='New Opportunity']/ancestor::div[contains(@class,'modal')]//label[contains(.,'Close Date')]/following::input[1]",
         accountDropdownOptions: "(//lightning-base-combobox-item)[2]",
         stageDropdown: "button[aria-label='Stage']",
